@@ -16,8 +16,7 @@
     "stop": [
       {
         "command": "/usr/bin/python3 .cursor/hooks/agent-capture.py",
-        "timeout": 20,
-        "loop_limit": 0
+        "timeout": 20
       }
     ],
     "sessionEnd": [

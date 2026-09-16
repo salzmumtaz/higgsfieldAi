@@ -1,0 +1,13 @@
+---
+description: Automatic prompt/response capture via Cursor hooks; do not edit logs by hand
+alwaysApply: true
+---
+
+# Agent capture
+
+Prompts and final responses are captured automatically by project hooks in `.cursor/hooks.json` (script: `.cursor/hooks/agent-capture.py`) into `.agent-logs/`.
+
+- Do not add `.agent-logs/` to `.gitignore`.
+- Do not edit, tidy, summarise, or delete log entries after the fact.
+- Do not manually rewrite captures. The hook is the source of truth.
+- Commit `.agent-logs/` interleaved with the code those turns produced.

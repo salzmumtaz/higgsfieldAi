@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeSubmitPrompt": [
+      {
+        "command": "/usr/bin/python3 .cursor/hooks/agent-capture.py",
+        "timeout": 20
+      }
+    ],
+    "afterAgentResponse": [
+      {
+        "command": "/usr/bin/python3 .cursor/hooks/agent-capture.py",
+        "timeout": 20
+      }
+    ],
+    "stop": [
+      {
+        "command": "/usr/bin/python3 .cursor/hooks/agent-capture.py",
+        "timeout": 20,
+        "loop_limit": 0
+      }
+    ],
+    "sessionEnd": [
+      {
+        "command": "/usr/bin/python3 .cursor/hooks/agent-capture.py",
+        "timeout": 20
+      }
+    ]
+  }
+}

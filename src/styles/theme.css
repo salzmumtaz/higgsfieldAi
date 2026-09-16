@@ -1,0 +1,120 @@
+/* Semantic dark theme — values from research/reference/theme/tokens.dark.json
+   and live-verified canvas/brand/danger/success. Do not import Higgsfield CSS. */
+
+:root {
+  color-scheme: dark;
+
+  --bg-page: #0f1113;
+  --bg-surface-primary: #1c1e20;
+  --bg-surface-secondary: #23262a;
+  --bg-surface-tertiary: #2a2d32;
+  --bg-surface-section: #18191c;
+  --bg-glass: #23262abf;
+  --bg-brand-soft: rgba(209, 254, 23, 0.08);
+  --bg-brand-soft-10: rgba(209, 254, 23, 0.1);
+  --bg-error: #5c000f;
+  --bg-success-state: #0d4a17;
+
+  --text-primary: #ffffff;
+  --text-primary-body: #f7f7f8;
+  --text-secondary: #828282;
+  --text-muted: #626262;
+  --text-disabled: #484e56;
+  --text-inverse: #1a1a1a;
+  --text-on-overlay: #ffffff80;
+
+  --border-subtle: #ffffff0d;
+  --border-default: #ffffff1a;
+  --border-strong: #ffffff33;
+  --border-card: #d9d9d90a;
+
+  --brand: #d1fe17;
+  --danger: #fa0019;
+  --success: #2eb844;
+  --warning: #dfab01;
+  --info: #5b91fe;
+  --overlay: #00000080;
+  --overlay-hover: #ffffff0d;
+  --overlay-page: #000000cc;
+
+  --font-sans-family: "Inter Variable", Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-grotesk-family: "Space Grotesk Variable", "Space Grotesk", sans-serif;
+
+  --text-size-caption: 0.75rem;
+  --text-size-label: 0.875rem;
+  --text-size-body: 1rem;
+  --text-size-title: 1.625rem;
+  --text-size-page: 2.125rem;
+
+  --layout-header-height: 52px;
+  --layout-content-max: 1536px;
+  --layout-gutter: 16px;
+  --layout-control-sm: 36px;
+  --layout-control-md: 48px;
+  --layout-chip: 32px;
+  --layout-recreate: 40px;
+  --layout-mobile-nav: 56px;
+  --layout-modal-sm: 29.3125rem;
+  --layout-modal-md: 40rem;
+  --layout-modal-lg: 44.25rem;
+
+  --shadow-brand-button:
+    inset 0 -3px 0 rgb(130, 155, 25),
+    0 6px 4px rgba(0, 0, 0, 0.25),
+    0 32px 24px rgba(0, 0, 0, 0.15);
+  --shadow-soft-inset: inset 0 2px 3px rgba(255, 255, 255, 0.03);
+  --shadow-raised-sm: 0 2px 4px #0000001a;
+
+  --duration-fast: 0.1s;
+  --duration-normal: 0.2s;
+  --duration-slow: 0.3s;
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-swift: cubic-bezier(0.2, 0, 0, 1);
+  --ease-button: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  --header-z: 51;
+}
+
+@theme inline {
+  --color-page: var(--bg-page);
+  --color-surface-primary: var(--bg-surface-primary);
+  --color-surface-secondary: var(--bg-surface-secondary);
+  --color-surface-tertiary: var(--bg-surface-tertiary);
+  --color-surface-section: var(--bg-surface-section);
+  --color-fg: var(--text-primary-body);
+  --color-fg-secondary: var(--text-secondary);
+  --color-fg-muted: var(--text-muted);
+  --color-fg-disabled: var(--text-disabled);
+  --color-fg-inverse: var(--text-inverse);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--bg-brand-soft);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-overlay: var(--overlay);
+  --color-overlay-hover: var(--overlay-hover);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-default: var(--border-default);
+  --color-border-strong: var(--border-strong);
+  --color-ring: var(--brand);
+
+  --font-sans: var(--font-sans-family);
+  --font-grotesk: var(--font-grotesk-family);
+
+  --radius-control: 0.625rem;
+  --radius-button: 0.75rem;
+  --radius-card: 1rem;
+  --radius-pill: 9999px;
+}
+
+@utility text-primary {
+  color: var(--text-primary-body);
+}
+
+@utility text-secondary {
+  color: var(--text-secondary);
+}
+
+@utility text-muted {
+  color: var(--text-muted);
+}

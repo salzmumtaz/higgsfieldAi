@@ -1,0 +1,49 @@
+{
+  "nav": {
+    "explore": { "text": "Explore" },
+    "image": { "text": "Image" },
+    "video": { "text": "Video" },
+    "audio": { "text": "Audio" },
+    "genjutsu": { "text": "Genjutsu" },
+    "effects": { "text": "Effects" },
+    "community": { "text": "Community" },
+    "library": { "text": "Library" },
+    "profile": { "text": "Profile" },
+    "pricing": { "text": "Pricing" },
+    "login": { "text": "Login" },
+    "signUp": { "text": "Sign Up" }
+  },
+  "actions": {
+    "generate": { "text": "Generate" },
+    "recreate": { "text": "Recreate" },
+    "like": { "text": "Like" },
+    "tryForFree": { "text": "Try for free" },
+    "startGenerating": { "text": "Start generating" },
+    "viewAllPresets": { "text": "View all presets" },
+    "upgrade": { "text": "Upgrade" }
+  },
+  "video": {
+    "create": { "text": "Create Video" },
+    "edit": { "text": "Edit Video" },
+    "motion": { "text": "Motion Control" }
+  },
+  "composer": {
+    "describeScene": { "text": "Describe the scene" },
+    "describeSceneYouImagine": { "text": "Describe the scene you imagine..." }
+  },
+  "auth": {
+    "welcome": { "text": "Welcome to Higgsfield" },
+    "signUpFree": { "text": "Sign up and generate for free" },
+    "continueGoogle": { "text": "Continue with Google" },
+    "continueEmail": { "text": "Continue with Email" }
+  },
+  "library": {
+    "empty": { "text": "Your creations will appear here." }
+  },
+  "badges": {
+    "new": { "text": "New" },
+    "free": { "text": "Free" },
+    "top": { "text": "Top" },
+    "public": { "text": "Public" }
+  }
+}

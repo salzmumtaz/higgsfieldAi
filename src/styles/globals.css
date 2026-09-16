@@ -1,0 +1,151 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter/wght.css";
+@import "@fontsource-variable/space-grotesk/wght.css";
+@import "./theme.css";
+
+@keyframes overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@layer base {
+  html {
+    background-color: var(--bg-page);
+    color-scheme: dark;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background-color: var(--bg-page);
+    color: var(--text-primary-body);
+    font-family: var(--font-sans-family);
+    font-size: var(--text-size-body);
+    font-weight: 400;
+    line-height: 1.5;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  #root {
+    min-height: 100dvh;
+  }
+
+  ::selection {
+    background: var(--brand);
+    color: var(--text-inverse);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+:where(
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role="button"],
+  [tabindex]:not([tabindex="-1"])
+):focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+@layer components {
+  .container-app {
+    width: 100%;
+    max-width: var(--layout-content-max);
+    margin-inline: auto;
+    padding-inline: var(--layout-gutter);
+  }
+
+  .type-page-title {
+    font-family: var(--font-sans-family);
+    font-size: var(--text-size-page);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.025rem;
+    color: var(--text-primary-body);
+  }
+
+  .type-section-title {
+    font-family: var(--font-sans-family);
+    font-size: var(--text-size-title);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.025rem;
+    color: var(--text-primary-body);
+  }
+
+  .type-accent {
+    font-family: var(--font-grotesk-family);
+    font-size: 1.625rem;
+    font-weight: 700;
+    line-height: 1.875rem;
+    letter-spacing: -1.2px;
+    text-transform: uppercase;
+    color: var(--brand);
+  }
+
+  .type-body {
+    font-family: var(--font-sans-family);
+    font-size: var(--text-size-body);
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--text-primary-body);
+  }
+
+  .type-body-secondary {
+    font-family: var(--font-sans-family);
+    font-size: var(--text-size-body);
+    font-weight: 500;
+    line-height: 1.375;
+    color: var(--text-secondary);
+  }
+
+  .type-label {
+    font-family: var(--font-sans-family);
+    font-size: var(--text-size-label);
+    font-weight: 600;
+    line-height: 1rem;
+    color: var(--text-primary-body);
+  }
+
+  .type-caption {
+    font-family: var(--font-sans-family);
+    font-size: var(--text-size-label);
+    font-weight: 400;
+    line-height: 1.25rem;
+    color: var(--text-secondary);
+  }
+
+  .type-button {
+    font-family: var(--font-sans-family);
+    font-size: var(--text-size-label);
+    font-weight: 500;
+    line-height: 1.25rem;
+  }
+}

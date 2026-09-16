@@ -1,0 +1,187 @@
+---
+description: Rebuild stack, state ownership, shared Auth/Upgrade modals, theme, and i18n rules
+alwaysApply: true
+---
+
+# Rebuild architecture
+
+Do not start application pages unless the user explicitly asks to implement.
+
+Do **not** use Next.js. Do **not** implement Clerk, real subscriptions, or copy Higgsfield CSS / minified JS.
+
+## Core stack
+
+- React
+- TypeScript
+- Vite
+- TanStack Router
+- Tailwind CSS
+- Radix primitives only where they materially help accessibility/interaction
+- Zustand for small shared client state
+
+TanStack Query is allowed later only for real async/server state. Do **not** install or use it to wrap static mock arrays.
+
+## State ownership (strict)
+
+Before introducing state, ask:
+
+1. Is it navigational/product identity? → **Router**
+2. Is it remote/server data? → **Query** (only if truly async)
+3. Must unrelated components/routes share it? → **Zustand**
+4. Otherwise → **local React state**
+
+Do not blur these responsibilities. Do not duplicate URL state into Zustand.
+
+### Router owns (URL is source of truth)
+
+Route params / search params for product configuration that should survive navigation:
+
+- selected model
+- `recreateId`
+- publication id
+- effect slug
+- meaningful generator mode
+- routes/tabs when they represent navigation
+
+Examples:
+
+- `/ai/image?model=soul-v2&recreateId=abc`
+- `/ai/video?model=genjutsu`
+
+Do **not** store selected model, route params, recreate id, or publication id in Zustand.
+
+### Query owns
+
+Actual async/server-style data, if introduced.
+
+This rebuild uses mostly seeded local data. Do not wrap mock arrays in Query.
+
+### Zustand owns (keep the store small)
+
+Cross-route, client-only demo state, for example:
+
+- mock authenticated user / auth status
+- Auth modal open/close + requested auth intent (`login` / `signup` / welcome)
+- Upgrade modal open/close + gating reason/context
+- authenticated Like overrides (`likedGenerationIds`) and visual count overrides
+- optional billing-cycle preference (Monthly / Annual)
+- other genuinely cross-route demo state if discovered later
+
+Do **not** store: prompt text for a single generator, local dropdowns, modal animation, upload previews, temporary form controls, Auth/Upgrade form field values.
+
+### React owns (local UI)
+
+- prompt editing
+- open/closed local dropdowns
+- model-picker UI state **before** navigation
+- local tabs that are not navigation
+- upload previews
+- temporary settings
+- textarea/input values
+- local dialog internals
+- AuthModal / UpgradeModal form fields, internal mode, and animation
+
+## Shared modal systems
+
+The app has **two** reusable application-level modal systems. Feature components trigger them. Features must **not** own duplicate modal implementations.
+
+### AuthModal (one)
+
+Opened from: logged-out Generate, logged-out Like, Recreate when auth is required, header Login, header Sign up, Library/Profile sign-in CTA.
+
+Internal modes (local to the modal): Welcome / auth entry, Sign in, Sign up, email continuation.
+
+Do **not** create `ImageLoginModal`, `VideoLoginModal`, `LikeLoginModal`, or per-page auth dialogs.
+
+Ownership:
+
+- open/close + requested auth intent → Zustand (unrelated routes all trigger the same system)
+- authenticated user/session → Zustand
+- form inputs, mode switch, animation → local state inside `AuthModal`
+
+Match the observed Higgsfield auth modal visually. No Clerk.
+
+### UpgradeModal (one)
+
+Opened from gated authenticated actions: Image/Video Generate, premium model access, insufficient credits, and Pricing header if that reuses this modal.
+
+API is a **gating reason/context**, not the page that opened it:
+
+- `openUpgradeModal({ reason: "model-access", modelId: "gpt_image_2" })`
+- `openUpgradeModal({ reason: "credits" })`
+
+Shared body: contextual heading + description, Monthly/Annual toggle, Basic / Pro / Max / Teams plans, shared feature/pricing content. Only the reason/context copy changes.
+
+Examples:
+
+- model gate title `Unlock GPT Image 2.0` / description about Starter-or-higher access
+- credit gate title `Upgrade Plan to buy credits` / description about higher limits and top-up
+
+Do **not** create `ImagePricingModal`, `VideoPricingModal`, `SeedancePricingModal`, or duplicate plan-card trees.
+
+Billing-cycle may persist in Zustand across openings. Do not implement checkout or payment.
+
+Both Auth and Upgrade must compose the **same** `Dialog` primitive (`DialogContent` + `className` for width/height/radius/mobile layout). Do not create a second dialog primitive.
+
+### Dialog accessibility
+
+Every real `Dialog` must include `DialogTitle`. Include `DialogDescription` when there is supporting copy.
+
+If the title or description should not be visible, keep it in the tree with `sr-only`. Do not omit them.
+
+## Auth / gating
+
+Centralize access behavior.
+
+- Unauthenticated Generate / Like / gated Recreate → shared `AuthModal`
+- Authenticated Generate without required access/credits → shared `UpgradeModal`
+
+Mock session lives in Zustand (`useAppStore(state => state.user)` conceptually). A successful mock sign-in updates Zustand so Library, header, and gating update immediately across the app.
+
+Do not implement Clerk. Do not implement real subscriptions.
+
+## Likes
+
+Seeded generation data is immutable. Do not mutate imported mocks.
+
+- Logged out: Like → Auth modal → no like-state change
+- Logged in: Like → toggle Zustand `likedGenerationIds` → `aria-pressed` + visual count
+
+Do not create a Favorites product.
+
+## Recreate
+
+Recreate data does **not** live in Zustand.
+
+Flow: generation record → resolve destination/model/settings → **navigate with Router** → destination shell reads URL → `recreateId` resolves seeded generation → initialize generator local state.
+
+This keeps Recreate deep-linkable.
+
+## Generator state
+
+Image and Video share primitives but keep form state inside each feature.
+
+Do **not** create a universal Zustand generator store.
+
+A generator page derives:
+
+- model from Router
+- recreated source from seeded data
+- editable prompt/settings from local React state
+
+Use effects only to initialize/clean up external state.
+
+## Styling
+
+- Semantic CSS custom properties from `research/reference/theme/tokens.dark.json` / `research/THEME_REFERENCE.md`
+- Tailwind mapped to those variables
+- Inter for UI; Space Grotesk only for verified accent/headline usage
+- One dark theme initially
+
+Do not copy Higgsfield production CSS.
+
+## i18n
+
+Small English semantic JSON + `t()` helper (`research/reference/i18n/rebuild-ui.en.json`).
+
+Do not reproduce Higgsfield’s Lingui runtime or hashed catalogs. Do not scatter UI strings through components.

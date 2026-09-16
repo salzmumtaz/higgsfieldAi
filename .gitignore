@@ -1,7 +1,18 @@
 .DS_Store
+node_modules
+dist
+*.local
 
 # Raw browser/network captures
 *.har
+
+# Cursor hook runtime state
+.cursor/hooks/state/
+
+# Environment/secrets
+.env
+.env.*
+!.env.example
 
 # Cursor hook runtime state
 .cursor/hooks/state/

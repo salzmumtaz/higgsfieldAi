@@ -1,0 +1,51 @@
+{
+  "$comment": "Semantic English copy taken from live Higgsfield catalogs on 2026-09-17. Hashed source keys are in sourceKey. Use this shape in the rebuild; do not load the hashed Lingui catalogs at runtime.",
+  "locale": "en",
+  "nav": {
+    "explore": { "text": "Explore", "sourceKey": "8tjQCz" },
+    "image": { "text": "Image", "sourceKey": "hG89Ed" },
+    "video": { "text": "Video", "sourceKey": "vSJd18" },
+    "audio": { "text": "Audio" },
+    "genjutsu": { "text": "Genjutsu" },
+    "effects": { "text": "Effects", "sourceKey": "XZzE8C" },
+    "community": { "text": "Community", "sourceKey": "chL5IG" },
+    "library": { "text": "Library" },
+    "profile": { "text": "Profile", "sourceKey": "vERlcd" },
+    "pricing": { "text": "Pricing", "sourceKey": "aHCEmh" },
+    "login": { "text": "Login" },
+    "signUp": { "text": "Sign Up", "sourceKey": "j76BX_" }
+  },
+  "actions": {
+    "generate": { "text": "Generate", "sourceKey": "ziAjHi" },
+    "recreate": { "text": "Recreate", "sourceKey": "fYb726" },
+    "like": { "text": "Like", "sourceKey": "W9FRBT" },
+    "tryForFree": { "text": "Try for free", "sourceKey": "XjMylT" },
+    "startGenerating": { "text": "Start generating", "sourceKey": "Rwpd6z" },
+    "viewAllPresets": { "text": "View all presets", "sourceKey": "0lVJzX" },
+    "upgrade": { "text": "Upgrade", "sourceKey": "kwkhPe" }
+  },
+  "video": {
+    "create": { "text": "Create Video", "sourceKey": "pHdgjO" },
+    "edit": { "text": "Edit Video", "sourceKey": "RYPluM" },
+    "motion": { "text": "Motion Control", "sourceKey": "quJjCp" }
+  },
+  "composer": {
+    "describeScene": { "text": "Describe the scene", "sourceKey": "8C8ku6" },
+    "describeSceneYouImagine": { "text": "Describe the scene you imagine..." }
+  },
+  "auth": {
+    "welcome": { "text": "Welcome to Higgsfield", "sourceKey": "NTbq9U" },
+    "signUpFree": { "text": "Sign up and generate for free", "sourceKey": "JTUQz_" },
+    "continueGoogle": { "text": "Continue with Google", "sourceKey": "oZyG4C" },
+    "continueEmail": { "text": "Continue with Email", "sourceKey": "RvVi9c" }
+  },
+  "library": {
+    "empty": { "text": "Your creations will appear here.", "sourceKey": "8GDV22" }
+  },
+  "badges": {
+    "new": { "text": "New", "sourceKey": "isRobC" },
+    "free": { "text": "Free", "sourceKey": "2POOFK" },
+    "top": { "text": "Top", "sourceKey": "WWy8TN" },
+    "public": { "text": "Public", "sourceKey": "7d1a0d" }
+  }
+}

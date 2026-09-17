@@ -39,17 +39,20 @@ export type GenjutsuMedia = {
   recreate?: GenjutsuRecreate;
 };
 
-export type GenjutsuPreset = {
+export type GenjutsuPresetBase = {
   id: string;
   name: string;
   description: string;
   mode: GenjutsuMode;
   modeLabel: GenjutsuModeLabel;
+  presetSource: string;
+};
+
+export type GenjutsuPreset = GenjutsuPresetBase & {
   jobSetType: string;
   aspect: GenjutsuAspectBucket;
   width: number;
   height: number;
-  presetSource: string;
   priority: number;
   /** Identifier required to open the Home preset modal. URL stays `/`. */
   openPresetId: string;

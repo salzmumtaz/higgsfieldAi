@@ -229,7 +229,8 @@
   "meta": {
     "fallback": { "text": "Higgsfield" },
     "home": { "text": "Higgsfield AI — AI-native creative suite" },
-    "image": { "text": "Create AI Images from Text & Photo | Higgsfield" }
+    "image": { "text": "Create AI Images from Text & Photo | Higgsfield" },
+    "video": { "text": "Create AI Videos from Text & Image | Higgsfield" }
   },
   "image": {
     "increment": { "text": "Increment" },
@@ -244,6 +245,80 @@
   },
   "library": {
     "empty": { "text": "Your creations will appear here." }
+  },
+  "video": {
+    "mode": {
+      "create": { "text": "Create Video" },
+      "edit": { "text": "Edit Video" },
+      "motion": { "text": "Motion Control" }
+    },
+    "prompt": { "text": "Prompt" },
+    "standardPrompt": { "text": "Describe your scene in detail. Use @ to reference media" },
+    "model": { "text": "Model" },
+    "quality": { "text": "Quality" },
+    "optional": { "text": "Optional" },
+    "on": { "text": "On" },
+    "off": { "text": "Off" },
+    "input": {
+      "references": { "text": "References" },
+      "frames": { "text": "Frames" },
+      "addReferences": { "text": "Add references" },
+      "addFrames": { "text": "Add frames" },
+      "imageOrVideo": { "text": "Image or Video" },
+      "startFrame": { "text": "Start frame" },
+      "endFrame": { "text": "End frame" }
+    },
+    "workspace": {
+      "history": { "text": "History" },
+      "motion-library": { "text": "Motion Library" },
+      "how-it-works": { "text": "How it works" },
+      "list": { "text": "List" },
+      "grid": { "text": "Grid" }
+    },
+    "guide": {
+      "title": { "text": "Make videos in one click" },
+      "description": { "text": "250+ presets for camera control, framing, and high-quality VFX — or use the general preset for manual control." },
+      "addImage": { "text": "Add image" },
+      "addImageBody": { "text": "Upload or generate an image to start your animation" },
+      "choosePreset": { "text": "Choose preset" },
+      "choosePresetBody": { "text": "Pick a preset to control your image movement" },
+      "getVideo": { "text": "Get video" },
+      "getVideoBody": { "text": "Click generate to create your final animated video!" }
+    },
+    "genjutsu": {
+      "tagline": { "text": "Reality manipulation" },
+      "motionTransfer": { "text": "Motion transfer" },
+      "objectsSwap": { "text": "Objects swap" },
+      "addVideo": { "text": "Add a reference video to extract motion" },
+      "videoGuidance": { "text": "Video duration: 4–30 seconds" },
+      "selectPresets": { "text": "Select from presets" },
+      "addImages": { "text": "Add your characters, products, or clothes" },
+      "imageGuidance": { "text": "Up to 30 images" },
+      "prompt": { "text": "Describe your new scene. Mention attached images or videos using @." },
+      "freeGens": { "text": "Use free gens" },
+      "libraryTitle": { "text": "Turn one video into many" },
+      "libraryBody": { "text": "Take the motion and recast it with your characters, locations, and products, or swap specific elements while keeping the rest untouched." }
+    },
+    "motion": {
+      "title": { "text": "Motion Control" },
+      "addMotion": { "text": "Add motion to copy" },
+      "videoGuidance": { "text": "Video duration: 3–30 seconds" },
+      "addCharacter": { "text": "Add your character" },
+      "imageGuidance": { "text": "Image with visible face and body" },
+      "sceneMode": { "text": "Scene control mode" },
+      "video": { "text": "Video" },
+      "image": { "text": "Image" },
+      "sceneGuidance": { "text": "Choose where the background should come from: the character image or the motion video" },
+      "advanced": { "text": "Advanced settings" },
+      "presetSelected": { "text": "Motion preset selected" },
+      "libraryTitle": { "text": "Recreate any Motion with Your Image" },
+      "libraryBody": { "text": "Copy motion from any video and place your character into the same movement" },
+      "startFromLibrary": { "text": "Start by copying motion from library" }
+    },
+    "history": {
+      "empty": { "text": "No videos yet" },
+      "body": { "text": "Your generated videos will appear here" }
+    }
   },
   "upgrade": {
     "genericTitle": { "text": "Upgrade your plan" },

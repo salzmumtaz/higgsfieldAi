@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AiImageRouteImport } from './routes/ai/image'
+import { Route as AiVideoRouteImport } from './routes/ai/video'
+import { Route as AiVideoMotionRouteImport } from './routes/ai/video/motion'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +24,48 @@ const AiImageRoute = AiImageRouteImport.update({
   path: '/ai/image',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AiVideoRoute = AiVideoRouteImport.update({
+  id: '/ai/video',
+  path: '/ai/video',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiVideoMotionRoute = AiVideoMotionRouteImport.update({
+  id: '/motion',
+  path: '/motion',
+  getParentRoute: () => AiVideoRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ai/image': typeof AiImageRoute
+  '/ai/video': typeof AiVideoRouteWithChildren
+  '/ai/video/motion': typeof AiVideoMotionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ai/image': typeof AiImageRoute
+  '/ai/video': typeof AiVideoRouteWithChildren
+  '/ai/video/motion': typeof AiVideoMotionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/ai/image': typeof AiImageRoute
+  '/ai/video': typeof AiVideoRouteWithChildren
+  '/ai/video/motion': typeof AiVideoMotionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/ai/image'
+  fullPaths: '/' | '/ai/image' | '/ai/video' | '/ai/video/motion'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/ai/image'
-  id: '__root__' | '/' | '/ai/image'
+  to: '/' | '/ai/image' | '/ai/video' | '/ai/video/motion'
+  id: '__root__' | '/' | '/ai/image' | '/ai/video' | '/ai/video/motion'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AiImageRoute: typeof AiImageRoute
+  AiVideoRoute: typeof AiVideoRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +84,38 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AiImageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai/video': {
+      id: '/ai/video'
+      path: '/ai/video'
+      fullPath: '/ai/video'
+      preLoaderRoute: typeof AiVideoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai/video/motion': {
+      id: '/ai/video/motion'
+      path: '/motion'
+      fullPath: '/ai/video/motion'
+      preLoaderRoute: typeof AiVideoMotionRouteImport
+      parentRoute: typeof AiVideoRoute
+    }
   }
 }
+
+interface AiVideoRouteChildren {
+  AiVideoMotionRoute: typeof AiVideoMotionRoute
+}
+
+const AiVideoRouteChildren: AiVideoRouteChildren = {
+  AiVideoMotionRoute: AiVideoMotionRoute,
+}
+
+const AiVideoRouteWithChildren =
+  AiVideoRoute._addFileChildren(AiVideoRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AiImageRoute: AiImageRoute,
+  AiVideoRoute: AiVideoRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

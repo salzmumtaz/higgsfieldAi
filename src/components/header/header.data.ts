@@ -133,6 +133,7 @@ const videoMenu: MegaColumn[] = [
     titleKey: "header.models",
     items: [
       item("seedance", "Seedance 2.5", "Create cinematic videos up to 30 seconds", "/ai/video?model=seedance_2_5", { icon: "seedance", badge: "top", badgeColor: "cyan" }),
+      item("seedance-2", "Seedance 2.0", "Browse premium AI video generations from the Higgsfield community", "/ai/video?model=seedance_2_0", { icon: "seedance" }),
       item("genjutsu", "Higgsfield Genjutsu", "Transfer motion or swap objects from a reference video", "/ai/video?model=genjutsu", { icon: "soul", badge: "new" }),
       item("gemini-omni", "Gemini Omni Flash 1.1", "Generate and edit video from any input", "/ai/video?model=gemini-omni-flash-1-1", { icon: "gemini" }),
       item("kling-3", "Kling 3.0", "Cinematic videos with audio", "/ai/video?model=kling3_0", { icon: "kling" }),
@@ -150,6 +151,21 @@ const videoMenu: MegaColumn[] = [
     ],
   },
 ];
+
+export const VIDEO_MODEL_MENU_ITEMS: MegaItem[] = videoMenu
+  .find((column) => column.titleKey === "header.models")!
+  .items.filter((entry) => videoModelIdFromHref(entry.href) != null);
+
+export function videoModelIdFromHref(href: string): string | undefined {
+  const url = new URL(href, "https://higgsfield.ai");
+  if (
+    url.pathname !== "/ai/video" &&
+    url.pathname !== "/ai/video/edit"
+  ) {
+    return undefined;
+  }
+  return url.searchParams.get("model") ?? undefined;
+}
 
 const audioMenu: MegaColumn[] = [
   {

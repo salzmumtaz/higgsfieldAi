@@ -5,6 +5,7 @@ import {
   type MegaItem,
 } from "@/components/header/header.data";
 import { IMAGE_MODELS } from "@/features/image/image.models";
+import { VIDEO_MODELS } from "@/features/video/video.models";
 import type {
   ModelGroup,
   SearchItem,
@@ -57,7 +58,7 @@ function imageModelItems(): SearchItem[] {
 }
 
 function routedModelItems(
-  menuId: "video" | "audio",
+  menuId: "audio",
   kindForItem: (item: MegaItem) => SearchKind,
 ): SearchItem[] {
   return menuItems(menuId, "header.models").map((item) => {
@@ -82,13 +83,24 @@ function routedModelItems(
 }
 
 const imageItems = imageModelItems();
-const videoAndEditItems = routedModelItems("video", (item) => {
-  const pathname = new URL(item.href, "https://higgsfield.ai").pathname;
-  return pathname.startsWith("/ai/video/edit") ||
-    pathname.startsWith("/ai/video/motion")
-    ? "edit-models"
-    : "video-models";
-});
+const videoItems: SearchItem[] = VIDEO_MODELS.map((model) => ({
+  id: `video-models-${model.id}`,
+  title: model.label,
+  description: model.description,
+  href: model.href,
+  kind: "video-models",
+  icon: model.icon,
+  badge: model.badge,
+  keywords: [model.id, model.label, "video-models"],
+  modelId: model.id,
+  generationModel: { mode: "video", model: model.id },
+}));
+const editItems = menuItems("video", "header.models")
+  .filter((item) => {
+    const path = new URL(item.href, "https://higgsfield.ai").pathname;
+    return path.startsWith("/ai/video/edit") || path.startsWith("/ai/video/motion");
+  })
+  .map((item) => toSearchItem(item, "edit-models"));
 const audioItems = routedModelItems("audio", () => "audio-models");
 
 const modelGroups: ModelGroup[] = [
@@ -102,13 +114,13 @@ const modelGroups: ModelGroup[] = [
     id: "video-models",
     label: "Video models",
     shortLabel: "Video",
-    items: videoAndEditItems.filter((item) => item.kind === "video-models"),
+    items: videoItems,
   },
   {
     id: "edit-models",
     label: "Edit models",
     shortLabel: "Edit",
-    items: videoAndEditItems.filter((item) => item.kind === "edit-models"),
+    items: editItems,
   },
   {
     id: "audio-models",
@@ -240,7 +252,7 @@ export const SITE_SEARCH_DATA: SiteSearchData = {
   trendingItems: [
     productItems.find((item) => item.id === "products-mcp"),
     productItems.find((item) => item.id === "products-ai-influencer"),
-    videoAndEditItems.find((item) => item.modelId === "seedance_2_5"),
+    videoItems.find((item) => item.modelId === "seedance_2_5"),
   ].filter((item): item is SearchItem => Boolean(item)),
 };
 

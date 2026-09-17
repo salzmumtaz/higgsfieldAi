@@ -11,8 +11,11 @@ import { useT } from "@/lib/i18n";
 
 export function AppShell({ children }: { children: ReactNode }) {
   const t = useT();
-  const isImageShell = useRouterState({
-    select: (state) => state.location.pathname === "/ai/image",
+  const isGeneratorShell = useRouterState({
+    select: (state) =>
+      state.location.pathname === "/ai/image" ||
+      state.location.pathname === "/ai/video" ||
+      state.location.pathname === "/ai/video/motion",
   });
   const mobileNav = [
     t("nav.explore"),
@@ -30,7 +33,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         {children}
       </main>
 
-      {isImageShell ? null : (
+      {isGeneratorShell ? null : (
         <>
           <Footer />
           <SiteFooter />

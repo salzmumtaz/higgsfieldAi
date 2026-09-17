@@ -477,6 +477,9 @@
     },
     "image": {
       "text": "Create AI Images from Text & Photo | Higgsfield"
+    },
+    "video": {
+      "text": "Create AI Videos from Text & Image | Higgsfield"
     }
   },
   "image": {
@@ -493,6 +496,80 @@
   "library": {
     "empty": {
       "text": "Tus creaciones aparecerán aquí."
+    }
+  },
+  "video": {
+    "mode": {
+      "create": { "text": "Crear vídeo" },
+      "edit": { "text": "Editar vídeo" },
+      "motion": { "text": "Control de movimiento" }
+    },
+    "prompt": { "text": "Prompt" },
+    "standardPrompt": { "text": "Describe la escena en detalle. Usa @ para referenciar contenido" },
+    "model": { "text": "Modelo" },
+    "quality": { "text": "Calidad" },
+    "optional": { "text": "Opcional" },
+    "on": { "text": "Activado" },
+    "off": { "text": "Desactivado" },
+    "input": {
+      "references": { "text": "Referencias" },
+      "frames": { "text": "Fotogramas" },
+      "addReferences": { "text": "Añadir referencias" },
+      "addFrames": { "text": "Añadir fotogramas" },
+      "imageOrVideo": { "text": "Imagen o vídeo" },
+      "startFrame": { "text": "Fotograma inicial" },
+      "endFrame": { "text": "Fotograma final" }
+    },
+    "workspace": {
+      "history": { "text": "Historial" },
+      "motion-library": { "text": "Biblioteca de movimiento" },
+      "how-it-works": { "text": "Cómo funciona" },
+      "list": { "text": "Lista" },
+      "grid": { "text": "Cuadrícula" }
+    },
+    "guide": {
+      "title": { "text": "Crea vídeos con un clic" },
+      "description": { "text": "Más de 250 presets para controlar cámara, encuadre y VFX de alta calidad." },
+      "addImage": { "text": "Añade una imagen" },
+      "addImageBody": { "text": "Sube o genera una imagen para iniciar la animación" },
+      "choosePreset": { "text": "Elige un preset" },
+      "choosePresetBody": { "text": "Elige un preset para controlar el movimiento" },
+      "getVideo": { "text": "Obtén el vídeo" },
+      "getVideoBody": { "text": "Pulsa generar para crear el vídeo final" }
+    },
+    "genjutsu": {
+      "tagline": { "text": "Manipulación de la realidad" },
+      "motionTransfer": { "text": "Transferencia de movimiento" },
+      "objectsSwap": { "text": "Intercambio de objetos" },
+      "addVideo": { "text": "Añade un vídeo de referencia para extraer el movimiento" },
+      "videoGuidance": { "text": "Duración del vídeo: 4–30 segundos" },
+      "selectPresets": { "text": "Seleccionar presets" },
+      "addImages": { "text": "Añade personajes, productos o ropa" },
+      "imageGuidance": { "text": "Hasta 30 imágenes" },
+      "prompt": { "text": "Describe la nueva escena. Menciona imágenes o vídeos adjuntos con @." },
+      "freeGens": { "text": "Usar generaciones gratis" },
+      "libraryTitle": { "text": "Convierte un vídeo en muchos" },
+      "libraryBody": { "text": "Transfiere el movimiento a personajes, lugares y productos, o intercambia elementos concretos." }
+    },
+    "motion": {
+      "title": { "text": "Control de movimiento" },
+      "addMotion": { "text": "Añade el movimiento que copiar" },
+      "videoGuidance": { "text": "Duración del vídeo: 3–30 segundos" },
+      "addCharacter": { "text": "Añade tu personaje" },
+      "imageGuidance": { "text": "Imagen con rostro y cuerpo visibles" },
+      "sceneMode": { "text": "Modo de control de escena" },
+      "video": { "text": "Vídeo" },
+      "image": { "text": "Imagen" },
+      "sceneGuidance": { "text": "Elige si el fondo procede de la imagen del personaje o del vídeo de movimiento" },
+      "advanced": { "text": "Ajustes avanzados" },
+      "presetSelected": { "text": "Preset de movimiento seleccionado" },
+      "libraryTitle": { "text": "Recrea cualquier movimiento con tu imagen" },
+      "libraryBody": { "text": "Copia el movimiento de cualquier vídeo y aplícalo a tu personaje" },
+      "startFromLibrary": { "text": "Empieza copiando un movimiento de la biblioteca" }
+    },
+    "history": {
+      "empty": { "text": "Aún no hay vídeos" },
+      "body": { "text": "Tus vídeos generados aparecerán aquí" }
     }
   },
   "upgrade": {

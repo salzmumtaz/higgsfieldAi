@@ -1,12 +1,11 @@
 import { useEffect, useRef, type SVGProps } from "react";
-import { promoHero } from "./quick-start.data";
+import { promoHero } from "./config/quick-start";
 import { useT } from "@/lib/i18n";
 
 const overlayGradient =
   "linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 38%, rgba(0,0,0,0.25) 70%, rgba(0,0,0,0.15) 100%)";
 
-const headingGradient =
-  "linear-gradient(180deg, #ffffff 0%, #999999 100%)";
+const headingGradient = "linear-gradient(180deg, #ffffff 0%, #999999 100%)";
 
 const accentGradient =
   "linear-gradient(90deg, rgb(209,254,23) 0%, rgba(209,254,23,0.8) 100%)";
@@ -118,7 +117,9 @@ export function PromoHeroCard() {
               >
                 <span className="relative truncate px-1.5 text-sm leading-5 font-semibold whitespace-nowrap text-fg-inverse lg:text-base">
                   <span className="lg:hidden">{promoHero.ctaMobile}</span>
-                  <span className="hidden lg:inline">{promoHero.ctaDesktop}</span>
+                  <span className="hidden lg:inline">
+                    {promoHero.ctaDesktop}
+                  </span>
                 </span>
               </span>
             </span>

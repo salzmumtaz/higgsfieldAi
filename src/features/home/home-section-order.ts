@@ -7,15 +7,15 @@
  * `research/HOME_SECTION_ORDER.md`.
  */
 import type { MessageKey } from "@/lib/i18n";
-import { gptImage2Items } from "@/features/home/community/gpt-image-2.data";
-import { marketingStudioItems } from "@/features/home/community/marketing-studio.data";
-import { seedance20Items } from "@/features/home/community/seedance-20.data";
-import { seedance25Items } from "@/features/home/community/seedance-25.data";
-import { soul20Items } from "@/features/home/community/soul-20.data";
-import { soulCinemaItems } from "@/features/home/community/soul-cinema.data";
-import { visualEffects } from "@/features/home/effects/visual-effects.data";
+import { gptImage2Items } from "@/features/home/community/config/gpt-image-2";
+import { marketingStudioItems } from "@/features/home/community/config/marketing-studio";
+import { seedance20Items } from "@/features/home/community/config/seedance-20";
+import { seedance25Items } from "@/features/home/community/config/seedance-25";
+import { soul20Items } from "@/features/home/community/config/soul-20";
+import { soulCinemaItems } from "@/features/home/community/config/soul-cinema";
+import { visualEffects } from "@/features/home/effects/config/visual-effects";
 import { genjutsuPresets } from "@/features/home/genjutsu/genjutsu.data";
-import { homeProjects } from "@/features/home/projects/projects.data";
+import { homeProjects } from "@/features/home/projects/config/projects";
 
 export const visualEffectsGallery = {
   kind: "visual-effects" as const,

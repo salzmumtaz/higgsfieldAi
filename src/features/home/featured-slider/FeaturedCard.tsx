@@ -1,5 +1,6 @@
-import type { FeaturedSlide } from "@/features/home/featured-slider/featured-slider.types";
+import type { FeaturedSlide } from "@/features/home/featured-slider/models/types";
 import { useFeaturedVideoPlayback } from "@/features/home/featured-slider/featured-playback";
+import { AppLink } from "@/components/navigation/AppLink";
 import { cn } from "@/lib/cn";
 import { useT } from "@/lib/i18n";
 
@@ -112,7 +113,7 @@ function HitArea({
   external?: boolean;
 }) {
   return (
-    <a
+    <AppLink
       href={href}
       aria-label={label}
       className={cn("absolute inset-0 z-10", className)}
@@ -121,6 +122,6 @@ function HitArea({
         : {})}
     >
       <span className="sr-only">{label}</span>
-    </a>
+    </AppLink>
   );
 }

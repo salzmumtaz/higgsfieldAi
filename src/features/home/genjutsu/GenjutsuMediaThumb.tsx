@@ -1,3 +1,4 @@
+import { memo } from "react";
 import type { GenjutsuMedia } from "./genjutsu.data";
 import {
   GENJUTSU_PROGRESS_CIRCUMFERENCE,
@@ -5,7 +6,7 @@ import {
 } from "./genjutsu.media";
 import { cn } from "@/lib/cn";
 
-export function GenjutsuMediaThumb({
+export const GenjutsuMediaThumb = memo(function GenjutsuMediaThumb({
   media,
   selected,
   label,
@@ -44,6 +45,7 @@ export function GenjutsuMediaThumb({
         src={media.posterSrc}
         className="size-full rounded-full border border-white object-cover"
       />
+
       {selected ? (
         <svg
           aria-hidden="true"
@@ -65,4 +67,4 @@ export function GenjutsuMediaThumb({
       ) : null}
     </button>
   );
-}
+});

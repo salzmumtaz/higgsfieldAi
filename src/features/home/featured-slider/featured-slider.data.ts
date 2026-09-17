@@ -1,4 +1,4 @@
-import type { FeaturedSlide } from "@/features/home/featured-slider/featured-slider.types";
+import type { FeaturedSlide } from "@/features/home/featured-slider/models/types";
 
 /** Live featured-feed catalog. CDN URLs only; do not download or copy into /public. */
 export const FEATURED_PAGE_SIZE = 8;

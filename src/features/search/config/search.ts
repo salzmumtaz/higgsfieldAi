@@ -4,18 +4,21 @@ import {
   imageModelIdFromHref,
   type MegaItem,
 } from "@/components/header/header.data";
-import { IMAGE_MODELS } from "@/features/image/image.models";
+import { IMAGE_MODELS } from "@/features/image/models";
 import { VIDEO_MODELS } from "@/features/video/video.models";
 import type {
   ModelGroup,
   SearchItem,
   SearchKind,
   SiteSearchData,
-} from "@/features/search/search.types";
+} from "@/features/search/types";
 
 const menuEntries = headerNav.filter((entry) => entry.type === "menu");
 
-function menuItems(menuId: string, column: "header.features" | "header.models") {
+function menuItems(
+  menuId: string,
+  column: "header.features" | "header.models",
+) {
   const menu = menuEntries.find((entry) => entry.id === menuId);
   return menu?.menu.find((entry) => entry.titleKey === column)?.items ?? [];
 }
@@ -42,7 +45,10 @@ function toSearchItem(
 
 function imageModelItems(): SearchItem[] {
   const catalogById = new Map(
-    IMAGE_MODEL_MENU_ITEMS.map((item) => [imageModelIdFromHref(item.href), item]),
+    IMAGE_MODEL_MENU_ITEMS.map((item) => [
+      imageModelIdFromHref(item.href),
+      item,
+    ]),
   );
 
   return IMAGE_MODELS.flatMap((model) => {
@@ -98,7 +104,9 @@ const videoItems: SearchItem[] = VIDEO_MODELS.map((model) => ({
 const editItems = menuItems("video", "header.models")
   .filter((item) => {
     const path = new URL(item.href, "https://higgsfield.ai").pathname;
-    return path.startsWith("/ai/video/edit") || path.startsWith("/ai/video/motion");
+    return (
+      path.startsWith("/ai/video/edit") || path.startsWith("/ai/video/motion")
+    );
   })
   .map((item) => toSearchItem(item, "edit-models"));
 const audioItems = routedModelItems("audio", () => "audio-models");
@@ -154,7 +162,10 @@ const topLevelProducts: SearchItem[] = headerNav.flatMap((entry) => {
       href: entry.href,
       kind: "products",
       keywords: [entry.id, "products"],
-      badge: entry.badge === "top" || entry.badge === "new" ? entry.badge : undefined,
+      badge:
+        entry.badge === "top" || entry.badge === "new"
+          ? entry.badge
+          : undefined,
     },
   ];
 });
@@ -171,12 +182,12 @@ function dedupeByHref<T extends { href: string }>(items: T[]) {
 const productItems = dedupeByHref([
   ...featureItems.map((item) => toSearchItem(item, "products")),
   ...topLevelProducts,
-])
-  .filter((item) => item.href.startsWith("/"))
-  ;
+]).filter((item) => item.href.startsWith("/"));
 
 const appItems = productItems
-  .filter((item) => new URL(item.href, "https://higgsfield.ai").pathname.startsWith("/apps"))
+  .filter((item) =>
+    new URL(item.href, "https://higgsfield.ai").pathname.startsWith("/apps"),
+  )
   .map((item) => ({
     ...item,
     id: item.id.replace(/^products-/, "apps-"),

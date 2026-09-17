@@ -9,7 +9,7 @@ import {
 import { cn } from "@/lib/cn";
 import { useT } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
-import { AuthShowcase } from "./AuthShowcase";
+import { AuthShowcase } from "./Showcase";
 import {
   AppleMark,
   AuthCloseIcon,
@@ -19,7 +19,7 @@ import {
   GiftIcon,
   GoogleMark,
   MicrosoftMark,
-} from "./auth-icons";
+} from "./icons";
 
 const providerClassName =
   "flex items-center justify-center gap-2 rounded-xl border border-white/10 py-3.5 text-center text-sm font-semibold text-fg transition-colors hover:border-white md:py-5";
@@ -44,8 +44,10 @@ export function AuthModal() {
     signIn();
   }
 
-  const heading = step === "email" ? t("auth.continueEmail") : t("auth.welcome");
-  const [ssoBefore = "", ssoAfter = ""] = t("auth.ssoAvailable").split("{plans}");
+  const heading =
+    step === "email" ? t("auth.continueEmail") : t("auth.welcome");
+  const [ssoBefore = "", ssoAfter = ""] =
+    t("auth.ssoAvailable").split("{plans}");
 
   return (
     <Dialog
@@ -137,25 +139,43 @@ export function AuthModal() {
                 </div>
 
                 <div className="flex flex-col gap-3">
-                  <button type="button" className={providerClassName} onClick={mockSignIn}>
+                  <button
+                    type="button"
+                    className={providerClassName}
+                    onClick={mockSignIn}
+                  >
                     <GoogleMark />
                     {t("auth.continueGoogle")}
                   </button>
-                  <button type="button" className={providerClassName} onClick={mockSignIn}>
+                  <button
+                    type="button"
+                    className={providerClassName}
+                    onClick={mockSignIn}
+                  >
                     <AppleMark />
                     {t("auth.continueApple")}
                   </button>
-                  <button type="button" className={providerClassName} onClick={mockSignIn}>
+                  <button
+                    type="button"
+                    className={providerClassName}
+                    onClick={mockSignIn}
+                  >
                     <MicrosoftMark />
                     {t("auth.continueMicrosoft")}
                   </button>
                 </div>
 
                 <div className="flex w-full items-center justify-center">
-                  <span className="text-center text-xs text-fg-disabled">{t("auth.or")}</span>
+                  <span className="text-center text-xs text-fg-disabled">
+                    {t("auth.or")}
+                  </span>
                 </div>
 
-                <button type="button" className={providerClassName} onClick={() => setStep("email")}>
+                <button
+                  type="button"
+                  className={providerClassName}
+                  onClick={() => setStep("email")}
+                >
                   <EmailMark />
                   {t("auth.continueEmail")}
                 </button>
@@ -164,7 +184,10 @@ export function AuthModal() {
                   <CloudSsoIcon className="size-4.5 text-fg-secondary [&_path]:stroke-2" />
                   <p className="text-center text-sm font-medium text-fg-secondary">
                     {ssoBefore}
-                    <button type="button" className="text-fg-secondary underline">
+                    <button
+                      type="button"
+                      className="text-fg-secondary underline"
+                    >
                       {t("auth.ssoPlans")}
                     </button>
                     {ssoAfter}

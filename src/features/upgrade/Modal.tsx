@@ -9,14 +9,14 @@ import {
 import { cn } from "@/lib/cn";
 import { useT } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
-import { UpgradeCloseIcon } from "@/features/upgrade/upgrade-icons";
-import { UpgradePlanCard } from "@/features/upgrade/UpgradePlanCard";
+import { UpgradeCloseIcon } from "@/features/upgrade/icons";
+import { UpgradePlanCard } from "@/features/upgrade/PlanCard";
 import {
   UPGRADE_PLANS,
   UPGRADE_PROMOTION_POSTER,
   UPGRADE_PROMOTION_VIDEO,
-} from "@/features/upgrade/upgrade.plans";
-import type { BillingPeriod } from "@/features/upgrade/upgrade.types";
+} from "@/features/upgrade/plans";
+import type { BillingPeriod } from "@/features/upgrade/types";
 
 const closeButtonClass =
   "flex size-8 cursor-pointer items-center justify-center rounded-2xl border-[1.5px] border-white/4 bg-page-primary text-white transition-colors hover:bg-surface-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
@@ -64,7 +64,10 @@ export function UpgradeModal() {
         <DialogDescription className="sr-only">{description}</DialogDescription>
 
         <DialogClose
-          className={cn(closeButtonClass, "absolute top-5 right-5 z-20 hidden md:flex")}
+          className={cn(
+            closeButtonClass,
+            "absolute top-5 right-5 z-20 hidden md:flex",
+          )}
           aria-label={t("upgrade.close")}
         >
           <UpgradeCloseIcon />

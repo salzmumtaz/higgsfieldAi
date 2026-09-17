@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { AppLink } from "@/components/navigation/AppLink";
 import { useT } from "@/lib/i18n";
 
 const ASSETS = {
@@ -26,20 +27,20 @@ export function PhotodumpBanner() {
             "linear-gradient(rgb(160, 170, 183) 0%, rgb(46, 52, 58) 100%)",
         }}
       >
-        <a
+        <AppLink
           aria-label={cta}
           href={MOBILE_HREF}
           className="absolute inset-0 z-20 rounded-[20px] md:hidden"
         >
           <span className="sr-only">{cta}</span>
-        </a>
-        <a
+        </AppLink>
+        <AppLink
           aria-label={cta}
           href={DESKTOP_HREF}
           className="absolute inset-0 z-20 hidden rounded-4xl md:block"
         >
           <span className="sr-only">{cta}</span>
-        </a>
+        </AppLink>
         <div className="relative -mb-20 aspect-[1.46] h-auto w-full md:absolute md:bottom-0 md:left-50 md:mb-0 md:aspect-[5.55] md:h-70 md:w-auto xl:left-84">
           <img
             sizes="calc(100vw - 32px)"

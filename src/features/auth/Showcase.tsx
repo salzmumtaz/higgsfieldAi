@@ -1,14 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
 import { useT } from "@/lib/i18n";
-import {
-  PromptEnhancerIcon,
-  QualityBadgeIcon,
-} from "./auth-icons";
-import {
-  AUTH_SLIDE_MS,
-  authShowcaseSlides,
-} from "./auth-showcase.data";
+import { PromptEnhancerIcon, QualityBadgeIcon } from "./icons";
+import { AUTH_SLIDE_MS, authShowcaseSlides } from "./config/showcase";
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;

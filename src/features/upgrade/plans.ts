@@ -3,7 +3,7 @@ import type {
   UpgradeFeatureRow,
   UpgradeModelGroup,
   UpgradePlan,
-} from "@/features/upgrade/upgrade.types";
+} from "@/features/upgrade/types";
 
 export const UPGRADE_PROMOTION_POSTER =
   "https://static.higgsfield.ai/promotions/upgrade-promotion-poster.webp";

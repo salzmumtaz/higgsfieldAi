@@ -8,7 +8,7 @@ import {
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { FeaturedCard } from "@/features/home/featured-slider/FeaturedCard";
 import { featuredItemInView } from "@/features/home/featured-slider/featured-playback";
-import type { FeaturedSlide } from "@/features/home/featured-slider/featured-slider.types";
+import type { FeaturedSlide } from "@/features/home/featured-slider/models/types";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
 import { useT } from "@/lib/i18n";

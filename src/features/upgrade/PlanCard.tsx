@@ -7,13 +7,13 @@ import {
   UpgradeGemIcon,
   UpgradeModelGlyph,
   UpgradeSparkIcon,
-} from "@/features/upgrade/upgrade-icons";
+} from "@/features/upgrade/icons";
 import type {
   BillingPeriod,
   UpgradeBadge,
   UpgradeModelGroup,
   UpgradePlan,
-} from "@/features/upgrade/upgrade.types";
+} from "@/features/upgrade/types";
 
 const surfaceStyle: Record<UpgradePlan["surface"], string> = {
   basic:
@@ -141,7 +141,9 @@ export function UpgradePlanCard({
                 ) : data.savingsAmount ? (
                   <>
                     <span className="font-semibold text-white">
-                      {t("upgrade.savings.save", { amount: data.savingsAmount })}
+                      {t("upgrade.savings.save", {
+                        amount: data.savingsAmount,
+                      })}
                     </span>{" "}
                     {t("upgrade.savings.comparedToMonthly")}
                   </>

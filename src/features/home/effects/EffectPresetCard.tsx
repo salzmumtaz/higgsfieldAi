@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
 import { useT } from "@/lib/i18n";
-import type { VisualEffectPreset } from "./visual-effects.data";
+import type { VisualEffectPreset } from "./config/visual-effects";
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;

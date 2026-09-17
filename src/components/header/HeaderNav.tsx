@@ -1,6 +1,6 @@
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import { Link, useRouterState } from "@tanstack/react-router";
-import { useLayoutEffect, useRef, type ComponentProps } from "react";
+import { useRouterState } from "@tanstack/react-router";
+import { useLayoutEffect, useRef } from "react";
 import { HeaderMegaMenu } from "@/components/header/HeaderMegaMenu";
 import {
   headerNav,
@@ -8,13 +8,18 @@ import {
   type NavBadge,
 } from "@/components/header/header.data";
 import { ShimmerText } from "@/components/ui/ShimmerText";
+import { AppLink } from "@/components/navigation/AppLink";
 import { cn } from "@/lib/cn";
 import { useT } from "@/lib/i18n";
 
 const navItemClass =
   "inline-flex h-9 shrink-0 items-center gap-1 rounded-lg px-2 text-sm font-medium whitespace-nowrap no-underline transition-colors duration-[var(--duration-fast)] ease-out text-fg-secondary hover:bg-overlay-hover hover:text-fg data-[state=open]:bg-overlay-hover data-[active]:text-brand data-[status=active]:text-brand";
 
-export function HeaderNav() {
+export function HeaderNav({
+  onMegaItemSelect,
+}: {
+  onMegaItemSelect: () => void;
+}) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { pathname, search } = useRouterState({
     select: (state) => ({
@@ -60,6 +65,7 @@ export function HeaderNav() {
             entry={entry}
             pathname={pathname}
             search={search}
+            onMegaItemSelect={onMegaItemSelect}
           />
         ))}
       </NavigationMenu.List>
@@ -71,10 +77,12 @@ function NavEntry({
   entry,
   pathname,
   search,
+  onMegaItemSelect,
 }: {
   entry: HeaderNavEntry;
   pathname: string;
   search: string;
+  onMegaItemSelect: () => void;
 }) {
   const t = useT();
   if (entry.type === "separator") {
@@ -104,14 +112,14 @@ function NavEntry({
     return (
       <NavigationMenu.Item>
         <NavigationMenu.Link asChild active={active}>
-          <NavHref
+          <AppLink
             href={entry.href}
             className={itemClass}
             data-active={active ? "" : undefined}
             aria-current={active ? "page" : undefined}
           >
             {label}
-          </NavHref>
+          </AppLink>
         </NavigationMenu.Link>
       </NavigationMenu.Item>
     );
@@ -120,7 +128,7 @@ function NavEntry({
   return (
     <NavigationMenu.Item value={entry.id}>
       <NavigationMenu.Trigger asChild>
-        <NavHref
+        <AppLink
           href={entry.href}
           className={itemClass}
           data-nav-trigger={entry.id}
@@ -128,33 +136,15 @@ function NavEntry({
           aria-current={active ? "page" : undefined}
         >
           {label}
-        </NavHref>
+        </AppLink>
       </NavigationMenu.Trigger>
       <NavigationMenu.Content className="w-max">
-        <HeaderMegaMenu columns={entry.menu} />
+        <HeaderMegaMenu
+          columns={entry.menu}
+          onItemSelect={onMegaItemSelect}
+        />
       </NavigationMenu.Content>
     </NavigationMenu.Item>
-  );
-}
-
-function NavHref({
-  href,
-  className,
-  children,
-  ...props
-}: ComponentProps<"a"> & { href: string }) {
-  if (href === "/") {
-    return (
-      <Link to="/" className={className} {...props}>
-        {children}
-      </Link>
-    );
-  }
-
-  return (
-    <a href={href} className={className} {...props}>
-      {children}
-    </a>
   );
 }
 

@@ -1,6 +1,6 @@
 import { useT } from "@/lib/i18n";
 import { ExploreMoreLink } from "./ExploreMoreLink";
-import { exploreMoreLinks } from "./explore-more.data";
+import { exploreMoreLinks } from "./config/explore-more";
 
 export function ExploreMoreSection() {
   const t = useT();

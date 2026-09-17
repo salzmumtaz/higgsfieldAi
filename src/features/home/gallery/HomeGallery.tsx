@@ -1,6 +1,6 @@
 import { cn } from "@/lib/cn";
 import { GalleryHeader } from "./GalleryHeader";
-import type { HomeGalleryProps } from "./gallery.types";
+import type { HomeGalleryProps } from "./models/types";
 
 export function HomeGallery({
   title,

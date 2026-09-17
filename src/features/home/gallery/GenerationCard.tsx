@@ -3,7 +3,7 @@ import { LikeButton } from "@/components/ui/LikeButton";
 import { cn } from "@/lib/cn";
 import { useT } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
-import type { GenerationItem } from "./gallery.types";
+import type { GenerationItem } from "@/features/home/models/types";
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;

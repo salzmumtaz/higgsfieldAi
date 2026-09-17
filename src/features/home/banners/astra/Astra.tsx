@@ -1,6 +1,12 @@
-import { useCallback, useEffect, useId, useState, type CSSProperties } from "react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useState,
+  type CSSProperties,
+} from "react";
 import { useT } from "@/lib/i18n";
-import "./astra-banner.css";
+import "./astra.css";
 
 const PLUGIN_HREF =
   "https://chatgpt.com/plugins/plugin_asdk_app_6a3293e129088191abf0875820e839da";
@@ -128,7 +134,11 @@ export function AstraBanner() {
                 gradientUnits="userSpaceOnUse"
               >
                 <stop stopColor="var(--astra-ice)" stopOpacity="0.7" />
-                <stop offset="0.35" stopColor="var(--astra-ice)" stopOpacity="0.3" />
+                <stop
+                  offset="0.35"
+                  stopColor="var(--astra-ice)"
+                  stopOpacity="0.3"
+                />
                 <stop offset="1" stopColor="var(--astra-ice)" stopOpacity="0" />
               </linearGradient>
               <linearGradient
@@ -140,7 +150,11 @@ export function AstraBanner() {
                 gradientUnits="userSpaceOnUse"
               >
                 <stop stopColor="var(--astra-ice)" stopOpacity="0.65" />
-                <stop offset="0.45" stopColor="var(--astra-ice)" stopOpacity="0.16" />
+                <stop
+                  offset="0.45"
+                  stopColor="var(--astra-ice)"
+                  stopOpacity="0.16"
+                />
                 <stop offset="1" stopColor="var(--astra-ice)" stopOpacity="0" />
               </linearGradient>
               <filter
@@ -154,7 +168,11 @@ export function AstraBanner() {
                 <feGaussianBlur stdDeviation="16" />
               </filter>
             </defs>
-            <g filter={`url(#${softId})`} fill={`url(#${archId})`} fillRule="evenodd">
+            <g
+              filter={`url(#${softId})`}
+              fill={`url(#${archId})`}
+              fillRule="evenodd"
+            >
               <path
                 d={ARCH_PATH}
                 transform="translate(704 -620) scale(.72) translate(-4037.28 -37.3223)"
@@ -204,7 +222,11 @@ export function AstraBanner() {
                 y2="0"
               >
                 <stop stopColor="currentColor" stopOpacity="0" />
-                <stop offset="0.8" stopColor="currentColor" stopOpacity="0.55" />
+                <stop
+                  offset="0.8"
+                  stopColor="currentColor"
+                  stopOpacity="0.55"
+                />
                 <stop offset="1" stopColor="currentColor" />
               </linearGradient>
             </defs>
@@ -246,7 +268,10 @@ export function AstraBanner() {
                 <defs>
                   <linearGradient id={metalId} x1="0" y1="0" x2="1" y2="0">
                     <stop stopColor="var(--astra-metal-start)" />
-                    <stop offset="0.42308" stopColor="var(--astra-metal-highlight)" />
+                    <stop
+                      offset="0.42308"
+                      stopColor="var(--astra-metal-highlight)"
+                    />
                     <stop offset="1" stopColor="var(--astra-silver)" />
                   </linearGradient>
                 </defs>
@@ -263,7 +288,9 @@ export function AstraBanner() {
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                   className="gpt-astra-banner-logo"
-                  style={{ "--astra-logo-fill": `url(#${metalId})` } as CSSProperties}
+                  style={
+                    { "--astra-logo-fill": `url(#${metalId})` } as CSSProperties
+                  }
                 >
                   <path
                     fill="currentColor"
@@ -289,7 +316,10 @@ export function AstraBanner() {
                 {t("home.astra.installPlugin")}
               </span>
             </a>
-            <a href={EXPLORE_HREF} className="gpt-astra-banner-cta gpt-astra-banner-cta-tertiary">
+            <a
+              href={EXPLORE_HREF}
+              className="gpt-astra-banner-cta gpt-astra-banner-cta-tertiary"
+            >
               <ExploreIcon />
               <span className="gpt-astra-banner-cta-label">
                 {t("home.astra.exploreUseCases")}
@@ -306,7 +336,10 @@ function AstraWord({ children }: { children: string }) {
   return (
     <span className="gpt-astra-banner-word">
       {Array.from(children).map((letter, index) => (
-        <span key={`${letter}-${index}`} className="gpt-astra-banner-letter-window">
+        <span
+          key={`${letter}-${index}`}
+          className="gpt-astra-banner-letter-window"
+        >
           <span className="gpt-astra-banner-letter">{letter}</span>
         </span>
       ))}

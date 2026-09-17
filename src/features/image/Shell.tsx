@@ -8,16 +8,13 @@ import {
 } from "@/components/ui/DropdownMenu";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { Textarea } from "@/components/ui/Textarea";
-import { ImageGenerateButton } from "@/features/image/ImageGenerateButton";
-import {
-  IMAGE_EMPTY_STATE_MEDIA,
-  IMAGE_MODELS,
-} from "@/features/image/image.models";
+import { ImageGenerateButton } from "@/features/image/GenerateButton";
+import { IMAGE_EMPTY_STATE_MEDIA, IMAGE_MODELS } from "@/features/image/models";
 import {
   SHARED_IMAGE_QUANTITY,
   type ImageControlConfig,
   type ImageModelConfig,
-} from "@/features/image/image.types";
+} from "@/features/image/types";
 import { cn } from "@/lib/cn";
 import { t, useT } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
@@ -49,9 +46,9 @@ export function ImageShell({ model }: { model: ImageModelConfig }) {
 
   const [prompt, setPrompt] = useState("");
   const [quantity, setQuantity] = useState(quantityConfig.default);
-  const [controlValues, setControlValues] = useState<Record<string, ControlValue>>(
-    () => controlDefaults(composer?.controls),
-  );
+  const [controlValues, setControlValues] = useState<
+    Record<string, ControlValue>
+  >(() => controlDefaults(composer?.controls));
   const [previews, setPreviews] = useState<PreviewFile[]>([]);
   const [activeModelId, setActiveModelId] = useState(model.id);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -61,9 +58,7 @@ export function ImageShell({ model }: { model: ImageModelConfig }) {
     setActiveModelId(model.id);
     setControlValues(controlDefaults(composer?.controls));
     setQuantity(quantityConfig.default);
-    setPreviews((current) =>
-      normalizePreviews(current, composer?.references),
-    );
+    setPreviews((current) => normalizePreviews(current, composer?.references));
   }
 
   useEffect(() => {
@@ -188,13 +183,19 @@ export function ImageShell({ model }: { model: ImageModelConfig }) {
 }
 
 const EMPTY_STATE_CARDS = [
-  { rotation: "-rotate-10", shape: "rounded-xl border-3 border-white/30 xl:border-4" },
+  {
+    rotation: "-rotate-10",
+    shape: "rounded-xl border-3 border-white/30 xl:border-4",
+  },
   { rotation: "rotate-4", shape: "rounded-xl" },
   {
     rotation: "rotate-180 -scale-y-100",
     shape: "rounded-full border-3 border-white/30 xl:border-4",
   },
-  { rotation: "-rotate-4", shape: "rounded-xl border-3 border-white/30 xl:border-4" },
+  {
+    rotation: "-rotate-4",
+    shape: "rounded-xl border-3 border-white/30 xl:border-4",
+  },
 ] as const;
 
 function ImageEmptyState({ modelLabel }: { modelLabel: string }) {
@@ -233,7 +234,8 @@ function EmptyStateCardRow({ media }: { media: string[] }) {
             style={{ zIndex: media.length - index }}
             className={cn(
               "flex shrink-0 items-center justify-center",
-              index < media.length - 1 && "-mr-[clamp(16px,min(1.5vw,2vh),36px)]",
+              index < media.length - 1 &&
+                "-mr-[clamp(16px,min(1.5vw,2vh),36px)]",
             )}
           >
             <div className={cn("flex-none", card.rotation)}>
@@ -243,7 +245,12 @@ function EmptyStateCardRow({ media }: { media: string[] }) {
                   card.shape,
                 )}
               >
-                <img src={src} alt="" loading="lazy" className="size-full object-cover" />
+                <img
+                  src={src}
+                  alt=""
+                  loading="lazy"
+                  className="size-full object-cover"
+                />
               </div>
             </div>
           </div>
@@ -253,11 +260,7 @@ function EmptyStateCardRow({ media }: { media: string[] }) {
   );
 }
 
-function ImageModelPicker({
-  model,
-}: {
-  model: ImageModelConfig;
-}) {
+function ImageModelPicker({ model }: { model: ImageModelConfig }) {
   const router = useRouter();
 
   function selectModel(id: string) {
@@ -543,7 +546,13 @@ function normalizePreviews(
   return current;
 }
 
-function ModelGlyph({ icon, className }: { icon: MegaIconId; className?: string }) {
+function ModelGlyph({
+  icon,
+  className,
+}: {
+  icon: MegaIconId;
+  className?: string;
+}) {
   if (icon === "ps" || icon === "pr" || icon === "ae") return null;
   const Icon = megaIcons[icon];
   return Icon ? <Icon className={className} /> : null;
@@ -551,12 +560,7 @@ function ModelGlyph({ icon, className }: { icon: MegaIconId; className?: string 
 
 function ChevronIcon() {
   return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      className="size-4"
-      fill="none"
-    >
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="size-4" fill="none">
       <path
         stroke="currentColor"
         strokeLinecap="round"
@@ -570,7 +574,12 @@ function ChevronIcon() {
 
 function PlusIcon() {
   return (
-    <svg aria-hidden="true" viewBox="0 0 20 20" className="size-4" fill="currentColor">
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 20 20"
+      className="size-4"
+      fill="currentColor"
+    >
       <path d="M9.166 9.166V4.166h1.667v5h5v1.667h-5v5H9.166v-5h-5V9.166h5Z" />
     </svg>
   );
@@ -578,7 +587,12 @@ function PlusIcon() {
 
 function MinusIcon() {
   return (
-    <svg aria-hidden="true" viewBox="0 0 20 20" className="size-4" fill="currentColor">
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 20 20"
+      className="size-4"
+      fill="currentColor"
+    >
       <path d="M4.166 9.166h11.667v1.667H4.166V9.166Z" />
     </svg>
   );

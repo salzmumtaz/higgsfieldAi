@@ -1,6 +1,26 @@
-export type QuickStartBadge = "top" | "new";
-export type QuickStartMediaType = "video" | "image";
-export type QuickStartIconId = "nano-banana" | "genjutsu";
+export const QuickStartBadge = {
+  Top: "top",
+  New: "new",
+} as const;
+
+export type QuickStartBadge =
+  (typeof QuickStartBadge)[keyof typeof QuickStartBadge];
+
+export const QuickStartMediaType = {
+  Video: "video",
+  Image: "image",
+} as const;
+
+export type QuickStartMediaType =
+  (typeof QuickStartMediaType)[keyof typeof QuickStartMediaType];
+
+export const QuickStartIconId = {
+  NanoBanana: "nano-banana",
+  Genjutsu: "genjutsu",
+} as const;
+
+export type QuickStartIconId =
+  (typeof QuickStartIconId)[keyof typeof QuickStartIconId];
 
 export type PromoBenefit = {
   id: string;

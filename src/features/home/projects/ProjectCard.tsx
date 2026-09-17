@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Hls from "hls.js";
 import { cn } from "@/lib/cn";
 import { useT } from "@/lib/i18n";
-import type { HomeProject } from "./projects.data";
+import type { HomeProject } from "./config/projects";
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -37,7 +37,10 @@ export function ProjectCard({ project }: { project: HomeProject }) {
     if (!video || !hoveredRef.current) return;
     video.muted = true;
     video.playsInline = true;
-    void video.play().then(revealIfPlaying).catch(() => {});
+    void video
+      .play()
+      .then(revealIfPlaying)
+      .catch(() => {});
   }
 
   function ensureSource() {

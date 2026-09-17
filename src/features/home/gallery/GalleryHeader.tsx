@@ -1,5 +1,5 @@
 import { cn } from "@/lib/cn";
-import type { GalleryAction } from "./gallery.types";
+import type { GalleryAction } from "./models/types";
 
 export function GalleryHeader({
   title,

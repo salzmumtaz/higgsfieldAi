@@ -18,16 +18,26 @@ export function Header() {
     const positioner = positionerRef.current;
     if (!root || !positioner || !value) return;
 
-    const trigger = root.querySelector(`[data-nav-trigger="${CSS.escape(value)}"]`);
+    const trigger = root.querySelector(
+      `[data-nav-trigger="${CSS.escape(value)}"]`,
+    );
     if (!(trigger instanceof HTMLElement)) return;
 
     const rootRect = root.getBoundingClientRect();
     const triggerRect = trigger.getBoundingClientRect();
     const menuWidth = positioner.offsetWidth;
-    const maxLeft = Math.max(0, window.innerWidth - 8 - rootRect.left - menuWidth);
-    const left = Math.max(0, Math.min(triggerRect.left - rootRect.left, maxLeft));
+    const maxLeft = Math.max(
+      0,
+      window.innerWidth - 8 - rootRect.left - menuWidth,
+    );
+    const left = Math.max(
+      0,
+      Math.min(triggerRect.left - rootRect.left, maxLeft),
+    );
     root.style.setProperty("--nav-vp-left", `${left}px`);
   }, []);
+
+  console.log("test");
 
   useLayoutEffect(() => {
     if (!openValue) return;
@@ -58,6 +68,7 @@ export function Header() {
     <header className="sticky top-0 z-[51] h-[var(--layout-header-height)] w-full min-w-0 overflow-visible border-b border-border-subtle bg-page">
       <NavigationMenu.Root
         ref={rootRef}
+        value={openValue}
         delayDuration={120}
         skipDelayDuration={200}
         aria-label={t("header.primary")}
@@ -72,7 +83,7 @@ export function Header() {
           <HiggsfieldMark className="size-5 text-fg-inverse" />
         </Link>
 
-        <HeaderNav />
+        <HeaderNav onMegaItemSelect={() => setOpenValue("")} />
         <HeaderActions />
 
         <div

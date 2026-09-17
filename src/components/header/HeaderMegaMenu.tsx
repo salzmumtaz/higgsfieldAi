@@ -1,5 +1,6 @@
 import { megaIcons } from "@/assets/icons/megaMenuIcons";
 import type { MegaColumn, MegaIconId, MegaItem } from "@/components/header/header.data";
+import { AppLink } from "@/components/navigation/AppLink";
 import { StatusBadge, statusBadgeWellClass } from "@/components/ui/StatusBadge";
 import { cn } from "@/lib/cn";
 import { useT } from "@/lib/i18n";
@@ -10,7 +11,13 @@ const adobeMarks: Record<"ps" | "pr" | "ae", string> = {
   ae: "Ae",
 };
 
-export function HeaderMegaMenu({ columns }: { columns: MegaColumn[] }) {
+export function HeaderMegaMenu({
+  columns,
+  onItemSelect,
+}: {
+  columns: MegaColumn[];
+  onItemSelect: () => void;
+}) {
   const t = useT();
   return (
     <div className="flex p-1">
@@ -19,7 +26,11 @@ export function HeaderMegaMenu({ columns }: { columns: MegaColumn[] }) {
           <p className="px-2 text-sm text-fg-secondary">{t(column.titleKey)}</p>
           <div className="mt-1 max-h-[min(70vh,36rem)] overflow-y-auto pr-1">
             {column.items.map((entry) => (
-              <MegaRow key={entry.id} item={entry} />
+              <MegaRow
+                key={entry.id}
+                item={entry}
+                onSelect={onItemSelect}
+              />
             ))}
           </div>
         </div>
@@ -28,14 +39,21 @@ export function HeaderMegaMenu({ columns }: { columns: MegaColumn[] }) {
   );
 }
 
-function MegaRow({ item }: { item: MegaItem }) {
+function MegaRow({
+  item,
+  onSelect,
+}: {
+  item: MegaItem;
+  onSelect: () => void;
+}) {
   const t = useT();
   const badgeColor =
     item.badgeColor ?? (item.badge === "new" ? "lime" : item.badge === "top" ? "pink" : undefined);
 
   return (
-    <a
+    <AppLink
       href={item.href}
+      onClick={onSelect}
       className="grid grid-cols-[auto_1fr] items-center gap-3 rounded-card p-2 no-underline transition-colors duration-[var(--duration-fast)] ease-out hover:bg-overlay-hover"
     >
       <div
@@ -53,7 +71,7 @@ function MegaRow({ item }: { item: MegaItem }) {
         <p className="font-grotesk truncate text-sm font-medium text-fg">{item.label}</p>
         <p className="text-sm text-fg-secondary">{item.description}</p>
       </div>
-    </a>
+    </AppLink>
   );
 }
 

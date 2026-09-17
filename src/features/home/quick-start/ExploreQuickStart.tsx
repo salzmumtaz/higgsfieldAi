@@ -1,6 +1,6 @@
 import { PromoHeroCard } from "./PromoHeroCard";
 import { QuickStartCard } from "./QuickStartCard";
-import { quickStartItems } from "./quick-start.data";
+import { quickStartItems } from "./config/quick-start";
 
 export function ExploreQuickStart() {
   return (

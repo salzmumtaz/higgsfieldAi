@@ -20,13 +20,13 @@ import type { MegaIconId } from "@/components/header/header.data";
 import {
   SEARCH_KIND_LABELS,
   SITE_SEARCH_DATA,
-} from "@/features/search/search.data";
+} from "@/features/search/config/search";
 import type {
   ModelGroup,
   SearchItem,
   SearchKind,
   SearchTab,
-} from "@/features/search/search.types";
+} from "@/features/search/types";
 import { cn } from "@/lib/cn";
 import { useT, type Translate } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
@@ -135,10 +135,10 @@ export function SearchModal() {
   }
 
   function selectItem(item: SearchItem) {
-    const nextIds = [item.id, ...recentIds.filter((id) => id !== item.id)].slice(
-      0,
-      RECENTS_MAX,
-    );
+    const nextIds = [
+      item.id,
+      ...recentIds.filter((id) => id !== item.id),
+    ].slice(0, RECENTS_MAX);
     setRecentIds(nextIds);
     writeRecentIds(nextIds);
     resetAndClose();
@@ -478,14 +478,14 @@ function SearchResultRow({
     <button
       type="button"
       data-search-result
-      onMouseMove={(event) => event.currentTarget.focus({ preventScroll: true })}
+      onMouseMove={(event) =>
+        event.currentTarget.focus({ preventScroll: true })
+      }
       onClick={() => onSelect(item)}
       className={cn(
         "group grid w-full grid-cols-[auto_1fr_auto] items-center rounded-xl text-left transition-colors focus:outline-none",
         compact ? "min-h-11 gap-2 p-1 pr-3" : "min-h-15 gap-3 py-2 pr-4 pl-2",
-        selected
-          ? "bg-white/10"
-          : "hover:bg-white/5 focus-visible:bg-white/5",
+        selected ? "bg-white/10" : "hover:bg-white/5 focus-visible:bg-white/5",
       )}
     >
       <span

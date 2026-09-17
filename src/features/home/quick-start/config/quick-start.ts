@@ -1,4 +1,4 @@
-import type { PromoHeroContent, QuickStartItem } from "./quick-start.types";
+import type { PromoHeroContent, QuickStartItem } from "../models/types";
 
 export const promoHero: PromoHeroContent = {
   posterSrc:

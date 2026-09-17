@@ -1,11 +1,15 @@
-import { createFileRoute, useNavigate, useRouterState } from "@tanstack/react-router";
+import {
+  createFileRoute,
+  useNavigate,
+  useRouterState,
+} from "@tanstack/react-router";
 import { useLayoutEffect } from "react";
-import { ImageShell } from "@/features/image/ImageShell";
+import { ImageShell } from "@/features/image/Shell";
 import {
   getImageModel,
   isImageModelId,
   resolveImageModelId,
-} from "@/features/image/image.models";
+} from "@/features/image/models";
 import { t } from "@/lib/i18n";
 
 type ImageSearch = {

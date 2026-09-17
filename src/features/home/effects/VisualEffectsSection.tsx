@@ -3,7 +3,7 @@ import { HomeGallery } from "@/features/home/gallery/HomeGallery";
 import { MasonryGallery } from "@/features/home/gallery/layouts/MasonryGallery";
 import { useT } from "@/lib/i18n";
 import { EffectPresetCard } from "./EffectPresetCard";
-import { visualEffects } from "./visual-effects.data";
+import { visualEffects } from "./config/visual-effects";
 
 function presetKey(preset: (typeof visualEffects)[number]) {
   return preset.slug;

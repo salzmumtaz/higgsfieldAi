@@ -1,28 +1,23 @@
+import { memo, useMemo } from "react";
 import { GenjutsuMediaThumb } from "./GenjutsuMediaThumb";
 import type { GenjutsuMedia, GenjutsuPreset } from "./genjutsu.data";
 import { selectorThumbs } from "./genjutsu.media";
 import { cn } from "@/lib/cn";
-import { useT, type Translate } from "@/lib/i18n";
+import { t } from "@/lib/i18n";
 
-function thumbLabel(
-  t: Translate,
-  preset: GenjutsuPreset,
-  media: GenjutsuMedia,
-) {
+function thumbLabel(preset: GenjutsuPreset, media: GenjutsuMedia) {
   if (media.id === preset.source.id) {
     return t("home.genjutsu.showSourceVideo");
   }
+
   const index = preset.variants.findIndex((variant) => variant.id === media.id);
   return t("home.genjutsu.showVariant", { index: index + 1 });
 }
 
-function thumbTooltip(
-  t: Translate,
-  preset: GenjutsuPreset,
-  media: GenjutsuMedia,
-) {
+function thumbTooltip(preset: GenjutsuPreset, media: GenjutsuMedia) {
   const showcase = preset.variants.find((variant) => variant.kind === "edit");
   const lead = showcase ?? preset.variants[0];
+
   if (lead && media.id === lead.id) return t("home.genjutsu.showcase");
   if (media.id === preset.source.id) return t("home.genjutsu.reference");
 
@@ -30,13 +25,13 @@ function thumbTooltip(
     (variant) => variant.id !== lead?.id && variant.kind !== "source",
   );
   const outputIndex = outputs.findIndex((variant) => variant.id === media.id);
-  if (outputIndex >= 0) {
-    return t("home.genjutsu.output", { index: outputIndex + 1 });
-  }
-  return null;
+
+  return outputIndex >= 0
+    ? t("home.genjutsu.output", { index: outputIndex + 1 })
+    : null;
 }
 
-export function GenjutsuMediaSelector({
+export const GenjutsuMediaSelector = memo(function GenjutsuMediaSelector({
   preset,
   selectedId,
   onSelect,
@@ -47,8 +42,7 @@ export function GenjutsuMediaSelector({
   onSelect: (id: string) => void;
   className?: string;
 }) {
-  const t = useT();
-  const thumbs = selectorThumbs(preset);
+  const thumbs = useMemo(() => selectorThumbs(preset), [preset]);
   if (!thumbs) return null;
 
   return (
@@ -61,25 +55,27 @@ export function GenjutsuMediaSelector({
       <GenjutsuMediaThumb
         media={thumbs.lead}
         selected={selectedId === thumbs.lead.id}
-        label={thumbLabel(t, preset, thumbs.lead)}
-        tooltip={thumbTooltip(t, preset, thumbs.lead)}
+        label={thumbLabel(preset, thumbs.lead)}
+        tooltip={thumbTooltip(preset, thumbs.lead)}
         onSelect={onSelect}
       />
+
       <span
         aria-hidden="true"
         className="h-3 w-px bg-[var(--border-default)] @max-[20rem]:hidden"
       />
+
       {thumbs.rest.map((media) => (
         <GenjutsuMediaThumb
           key={media.id}
           className="@max-[20rem]:-ml-2"
           media={media}
           selected={selectedId === media.id}
-          label={thumbLabel(t, preset, media)}
-          tooltip={thumbTooltip(t, preset, media)}
+          label={thumbLabel(preset, media)}
+          tooltip={thumbTooltip(preset, media)}
           onSelect={onSelect}
         />
       ))}
     </div>
   );
-}
+});

@@ -1,8 +1,9 @@
 import type { SVGProps } from "react";
 import { SoulIcon } from "@/assets/icons/SoulIcon";
+import { AppLink } from "@/components/navigation/AppLink";
 import { cn } from "@/lib/cn";
 import { useT } from "@/lib/i18n";
-import type { QuickStartBadge, QuickStartItem } from "./quick-start.types";
+import type { QuickStartBadge, QuickStartItem } from "./models/types";
 
 const badgeClass: Record<QuickStartBadge, string> = {
   top: "bg-brand-secondary text-white [background-image:radial-gradient(39.71%_136.54%_at_51.64%_117.31%,#F920D1_0%,#ED1572_100%)]",
@@ -23,7 +24,7 @@ export function QuickStartCard({ item }: { item: QuickStartItem }) {
         : null;
 
   return (
-    <a
+    <AppLink
       href={item.href}
       className={cn(
         "group relative flex min-h-31.5 overflow-hidden rounded-2xl border border-border-subtle bg-transparent p-0.5 transition-all duration-300 ease-out hover:border-transparent hover:p-0",
@@ -70,7 +71,7 @@ export function QuickStartCard({ item }: { item: QuickStartItem }) {
           {typeLabel}
         </span>
       ) : null}
-    </a>
+    </AppLink>
   );
 }
 

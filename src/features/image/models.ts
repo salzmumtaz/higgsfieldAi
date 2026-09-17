@@ -8,7 +8,7 @@ import {
   SHARED_IMAGE_QUANTITY,
   type ImageComposerConfig,
   type ImageModelConfig,
-} from "@/features/image/image.types";
+} from "@/features/image/types";
 
 export const IMAGE_EMPTY_STATE_MEDIA = [
   "https://static.higgsfield.ai/public/image/empty-state/soul-cinematic-1.webp",

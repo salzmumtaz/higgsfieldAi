@@ -1,10 +1,8 @@
-import type { CSSProperties } from "react";
+import { memo, useSyncExternalStore, type CSSProperties } from "react";
+import { AppLink } from "@/components/navigation/AppLink";
 import { GenjutsuPresetCard } from "./GenjutsuPresetCard";
 import { genjutsuPresets } from "./genjutsu.data";
-import {
-  NewModelBadgeIcon,
-  ViewAllArrowIcon,
-} from "./genjutsu-icons";
+import { NewModelBadgeIcon, ViewAllArrowIcon } from "./genjutsu-icons";
 import {
   GENJUTSU_MOBILE_LIMIT,
   GENJUTSU_PRESETS_HREF,
@@ -12,14 +10,18 @@ import {
   packGenjutsuColumns,
 } from "./genjutsu.media";
 import { cn } from "@/lib/cn";
-import { useT } from "@/lib/i18n";
+import { t } from "@/lib/i18n";
 
 const FRAME_SHADOW = "0 0 2rem 0 rgba(0, 0, 0, 0.85)";
 const FRAME_BORDER =
   "linear-gradient(180deg, #3B3B3B 0%, #2E2E2E 50%, #343434 100%)";
 const BADGE_BORDER = "linear-gradient(180deg, #73802E 0%, #656B43 100%)";
-const MASONRY_FADE =
-  "linear-gradient(180deg, rgb(0 0 0 / 0) 0%, #000 73.33%)";
+const MASONRY_FADE = "linear-gradient(180deg, rgb(0 0 0 / 0) 0%, #000 73.33%)";
+const DESKTOP_QUERY = "(min-width: 768px)";
+
+// Static data: do not rebuild these arrays whenever Home re-renders on scroll.
+const DESKTOP_COLUMNS = packGenjutsuColumns(genjutsuPresets);
+const MOBILE_PRESETS = genjutsuPresets.slice(0, GENJUTSU_MOBILE_LIMIT);
 
 const maskBorderStyle = (background: string): CSSProperties => ({
   padding: 1,
@@ -29,6 +31,20 @@ const maskBorderStyle = (background: string): CSSProperties => ({
   WebkitMaskComposite: "xor",
   maskComposite: "exclude",
 });
+
+function subscribeDesktop(onChange: () => void) {
+  const query = window.matchMedia(DESKTOP_QUERY);
+  query.addEventListener("change", onChange);
+  return () => query.removeEventListener("change", onChange);
+}
+
+function getDesktopSnapshot() {
+  return window.matchMedia(DESKTOP_QUERY).matches;
+}
+
+function useIsDesktop() {
+  return useSyncExternalStore(subscribeDesktop, getDesktopSnapshot, () => true);
+}
 
 function GradientHairline({
   background,
@@ -50,7 +66,6 @@ function GradientHairline({
 }
 
 function NewModelBadge() {
-  const t = useT();
   return (
     <span
       className={cn(
@@ -96,15 +111,12 @@ function brandSoftClassName(extra?: string) {
   );
 }
 
-function GenjutsuDesktopSection() {
-  const t = useT();
-  const columns = packGenjutsuColumns(genjutsuPresets);
-
+const GenjutsuDesktopSection = memo(function GenjutsuDesktopSection() {
   return (
     <section
       aria-label={t("home.genjutsu.title")}
       className={cn(
-        "relative isolate flex w-full flex-col items-start gap-4 self-stretch overflow-hidden rounded-3xl bg-black px-4 pt-4 pb-[max(1rem,env(safe-area-inset-bottom,0px))] [transform:translateZ(0)]",
+        "relative isolate flex w-full flex-col items-start gap-4 self-stretch overflow-hidden rounded-3xl bg-black px-4 pt-4 pb-[max(1rem,env(safe-area-inset-bottom,0px))]",
         "md:gap-7 md:px-6 md:pt-6 md:pb-0",
         "[@supports(-webkit-hyphens:none)]:[clip-path:inset(0_round_1.5rem)] [@supports(-webkit-hyphens:none)]:shadow-[inset_0_0_0_1px_#343434]",
       )}
@@ -122,11 +134,18 @@ function GenjutsuDesktopSection() {
             {t("home.genjutsu.description")}
           </p>
         </div>
+
         <div className="flex w-full shrink-0 flex-col gap-2 sm:flex-row sm:items-center md:mt-auto md:w-auto">
-          <a href={generateHref()} className={marketingPrimaryClassName()}>
-            {t("actions.startGenerating")}
-          </a>
-          <a href={GENJUTSU_PRESETS_HREF} className={marketingSecondaryClassName()}>
+          <AppLink
+            href={generateHref()}
+            className={marketingPrimaryClassName()}
+          >
+            Try free
+          </AppLink>
+          <a
+            href={GENJUTSU_PRESETS_HREF}
+            className={marketingSecondaryClassName()}
+          >
             {t("actions.learnMore")}
           </a>
         </div>
@@ -137,7 +156,7 @@ function GenjutsuDesktopSection() {
           data-explore-masonry=""
           className="flex h-[calc(45cqw+3*var(--spacing-q-200,0.5rem))] w-full gap-2 overflow-hidden"
         >
-          {columns.map((column, index) => (
+          {DESKTOP_COLUMNS.map((column, index) => (
             <div
               key={index}
               className="flex min-w-0 flex-1 flex-col gap-2 [&_[data-explore-card]]:mb-0!"
@@ -148,6 +167,7 @@ function GenjutsuDesktopSection() {
             </div>
           ))}
         </div>
+
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -inset-x-6 bottom-0 z-10 h-60"
@@ -166,12 +186,9 @@ function GenjutsuDesktopSection() {
       </div>
     </section>
   );
-}
+});
 
-function GenjutsuMobileSection() {
-  const t = useT();
-  const presets = genjutsuPresets.slice(0, GENJUTSU_MOBILE_LIMIT);
-
+const GenjutsuMobileSection = memo(function GenjutsuMobileSection() {
   return (
     <section className="space-y-5">
       <hgroup className="space-y-1">
@@ -187,12 +204,13 @@ function GenjutsuMobileSection() {
           {t("home.genjutsu.descriptionMobile")}
         </p>
       </hgroup>
+
       <div className="relative max-h-224 overflow-hidden">
         <div
           data-explore-masonry=""
           className="w-full columns-2 [column-gap:1rem]"
         >
-          {presets.map((preset) => (
+          {MOBILE_PRESETS.map((preset) => (
             <GenjutsuPresetCard
               key={preset.id}
               preset={preset}
@@ -200,6 +218,7 @@ function GenjutsuMobileSection() {
             />
           ))}
         </div>
+
         <div className="pointer-events-none absolute -bottom-1 left-0 z-10 grid h-52 w-full items-end justify-center bg-gradient-to-t from-page to-transparent pb-5">
           <a
             href={GENJUTSU_PRESETS_HREF}
@@ -212,17 +231,20 @@ function GenjutsuMobileSection() {
       </div>
     </section>
   );
-}
+});
 
-export function GenjutsuSection() {
-  return (
-    <>
-      <div className="container-app mb-6 hidden md:block">
-        <GenjutsuDesktopSection />
-      </div>
-      <div className="container-app my-6 md:hidden">
-        <GenjutsuMobileSection />
-      </div>
-    </>
+export const GenjutsuSection = memo(function GenjutsuSection() {
+  const isDesktop = useIsDesktop();
+
+  // Important: only one responsive tree is mounted. CSS hiding both trees still
+  // leaves every card, observer and video lifecycle alive in React.
+  return isDesktop ? (
+    <div className="container-app mb-6">
+      <GenjutsuDesktopSection />
+    </div>
+  ) : (
+    <div className="container-app my-6">
+      <GenjutsuMobileSection />
+    </div>
   );
-}
+});

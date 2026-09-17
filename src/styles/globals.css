@@ -33,7 +33,7 @@
   color: var(--shimmer-text-base, currentColor);
 }
 
-.shimmer-text::after {
+/* .shimmer-text::after {
   content: attr(data-text);
   position: absolute;
   inset: 0;
@@ -43,7 +43,11 @@
     90deg,
     transparent 0%,
     transparent 40%,
-    var(--shimmer-text-highlight, color-mix(in srgb, var(--text-primary) 90%, transparent)) 50%,
+    var(
+        --shimmer-text-highlight,
+        color-mix(in srgb, var(--text-primary) 90%, transparent)
+      )
+      50%,
     transparent 60%,
     transparent 100%
   );
@@ -53,7 +57,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shimmer-text-sweep var(--shimmer-text-duration, 2s) linear infinite;
-}
+} */
 
 @media (prefers-reduced-motion: reduce) {
   .shimmer-text::after {
@@ -131,7 +135,7 @@
     padding-inline: var(--layout-gutter);
   }
 
-  .header-nav-scroll {
+  /* .header-nav-scroll {
     mask-image: linear-gradient(
       to right,
       var(--nav-fade-left, transparent),
@@ -146,7 +150,7 @@
       #000 calc(100% - 72px),
       var(--nav-fade-right, transparent)
     );
-  }
+  } */
 
   .header-nav-scroll[data-scroll-start] {
     --nav-fade-left: #000;

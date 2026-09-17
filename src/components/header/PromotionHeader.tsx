@@ -11,9 +11,10 @@ export function PromotionHeader() {
     <header
       data-expanded={expanded ? "true" : "false"}
       className={cn(
-        "relative z-[3] grid bg-brand text-fg-inverse shadow-[0_0_12px_0_rgb(209_254_23_/_0.5)] transition-[grid-template-rows] duration-[var(--duration-slow)] ease-out",
-        "border-b border-white/20",
-        expanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+        "relative z-[3] grid bg-brand text-fg-inverse transition-[grid-template-rows,box-shadow,border-color] duration-[var(--duration-slow)] ease-out",
+        expanded
+          ? "grid-rows-[1fr] border-b border-white/20 shadow-[0_0_12px_0_rgb(209_254_23_/_0.5)]"
+          : "grid-rows-[0fr] border-0 shadow-none",
       )}
     >
       <div className="min-h-0 overflow-hidden">

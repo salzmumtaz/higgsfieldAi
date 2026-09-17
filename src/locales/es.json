@@ -468,10 +468,166 @@
       "text": "Privacidad"
     }
   },
+  "meta": {
+    "fallback": {
+      "text": "Higgsfield"
+    },
+    "home": {
+      "text": "Higgsfield AI — AI-native creative suite"
+    },
+    "image": {
+      "text": "Create AI Images from Text & Photo | Higgsfield"
+    }
+  },
+  "image": {
+    "increment": { "text": "Increment" },
+    "decrement": { "text": "Decrement" },
+    "character": { "text": "CHARACTER" },
+    "addReference": { "text": "Añadir referencia" },
+    "removeReference": { "text": "Quitar referencia" },
+    "emptyStateTitle": { "text": "Empieza a crear con" },
+    "emptyStateBody": {
+      "text": "Describe una escena, un personaje, un ambiente o un estilo, y verás cómo cobra vida"
+    }
+  },
   "library": {
     "empty": {
       "text": "Tus creaciones aparecerán aquí."
     }
+  },
+  "upgrade": {
+    "genericTitle": { "text": "Mejora tu plan" },
+    "genericDescription": { "text": "Elige un plan para seguir creando" },
+    "gptImage2Title": { "text": "Desbloquea GPT Image 2.0" },
+    "gptImage2Description": {
+      "text": "Obtén acceso a las generaciones de imágenes de GPT Image 2.0 con un plan Starter o superior"
+    },
+    "close": { "text": "Cerrar" },
+    "billing": {
+      "toggleLabel": { "text": "Cambiar periodo de facturación" },
+      "monthly": { "text": "Mensual" },
+      "annual": { "text": "Anual" },
+      "discount": { "text": "30% DTO." }
+    },
+    "plan": {
+      "basic": {
+        "name": { "text": "Basic" },
+        "subtitle": { "text": "Para quienes empiezan con la IA" },
+        "cta": { "text": "Elegir Basic" }
+      },
+      "pro": {
+        "name": { "text": "Pro" },
+        "subtitle": { "text": "Para crear con IA cada día" },
+        "cta": { "text": "Elegir Pro" }
+      },
+      "max": {
+        "name": { "text": "Max" },
+        "subtitle": { "text": "Para proyectos de IA ambiciosos" },
+        "cta": { "text": "Elegir Max" }
+      }
+    },
+    "credits": {
+      "perMonth": { "text": "créditos/mes" },
+      "basicGenerations": { "text": "= 60 generaciones de Nano Banana Pro" },
+      "basicVideos": { "text": "~ 7 vídeos de Seedance 2.0 Fast" },
+      "basicFixed": { "text": "Cantidad fija de 120 créditos/mes" },
+      "proGenerations": { "text": "= 300 generaciones de Nano Banana Pro" },
+      "proVideos": { "text": "~ 27 vídeos de Seedance 2.0" },
+      "maxGenerations": { "text": "= 900 generaciones de Nano Banana Pro" },
+      "maxVideos": { "text": "~ 80 vídeos de Seedance 2.0" },
+      "tierLabel": { "text": "{amount} créditos al mes" }
+    },
+    "price": {
+      "billedAnnually": { "text": "al mes, facturado anualmente" },
+      "billedMonthly": { "text": "Facturación mensual" }
+    },
+    "savings": {
+      "save": { "text": "Ahorra {amount}" },
+      "comparedToMonthly": { "text": "frente al plan mensual" },
+      "noDifference": { "text": "Sin diferencia frente al plan mensual" }
+    },
+    "group": {
+      "unlimitedFreeGens": { "text": "Generaciones ilimitadas y gratis" },
+      "noOtherUnlimited": { "text": "Sin otros modelos ilimitados" },
+      "sevenUnlimitedModels": {
+        "text": "7 modelos de generación ilimitados y gratis"
+      },
+      "noSeedance25": { "text": "Sin acceso a Seedance 2.5" },
+      "availableFromPro": { "text": "Disponible desde el plan Pro" },
+      "seedanceAccess": { "text": "Acceso a los modelos Seedance" },
+      "seedanceFullLineup": { "text": "Gama completa incluida" }
+    },
+    "badge": {
+      "noAccess": { "text": "Sin acceso" },
+      "noUnlimited": { "text": "Sin ilimitado" },
+      "sevenDayUnlimited": { "text": "7 días ilimitado" },
+      "fullAccess": { "text": "Acceso total" },
+      "bestValue": { "text": "Mejor valor" },
+      "new": { "text": "Nuevo" },
+      "off21": { "text": "21% DTO." },
+      "off25": { "text": "25% DTO." },
+      "cheaper60": { "text": "60% más barato" },
+      "cheaper50": { "text": "50% más barato" }
+    },
+    "feature": {
+      "parallel2": {
+        "text": "Generaciones en paralelo: hasta 2 vídeos y 2 imágenes"
+      },
+      "parallel3": {
+        "text": "Generaciones en paralelo: hasta 3 vídeos y 4 imágenes"
+      },
+      "unlimitedParallel": {
+        "text": "Generaciones en paralelo de pago ilimitadas"
+      },
+      "supercomputer": { "text": "Acceso a Supercomputer" },
+      "seedanceFastMini": { "text": "Acceso a Seedance 2.0 Fast y 2.0 Mini" },
+      "allSeedance": { "text": "Acceso a todos los modelos Seedance" },
+      "selectedModels": {
+        "text": "Acceso a modelos y funciones seleccionados"
+      },
+      "allModels": { "text": "Acceso a todos los modelos y funciones" },
+      "earlyAccess": {
+        "text": "Acceso anticipado a funciones avanzadas de IA"
+      },
+      "marketplace": { "text": "Acceso al marketplace ilimitado" },
+      "lowestCost": { "text": "El menor coste por crédito" }
+    },
+    "note": {
+      "unlimitedScope": {
+        "text": "Los modelos ilimitados y las generaciones gratuitas de los planes solo están disponibles en higgsfield.ai y no en MCP/CLI, Canvas ni Supercomputer."
+      },
+      "taxes": {
+        "text": "Los precios no incluyen IVA ni impuestos locales, que se calculan al pagar. El uso ilimitado puede estar sujeto a ajustes dinámicos de velocidad en periodos de mucho tráfico."
+      },
+      "rollout": {
+        "text": "El acceso a nuevos modelos y funciones avanzadas puede desplegarse de forma progresiva y no estar disponible para todos los usuarios en el lanzamiento."
+      }
+    },
+    "footer": {
+      "explorePlans": { "text": "Ver todos los planes" },
+      "creditPacks": { "text": "Packs de créditos" }
+    },
+    "planSelected": { "text": "{plan} seleccionado" }
+  },
+  "search": {
+    "title": { "text": "Buscar en Higgsfield" },
+    "description": { "text": "Busca modelos, productos, personajes, comunidad, aplicaciones y Originals" },
+    "placeholder": { "text": "Buscar..." },
+    "clear": { "text": "Borrar búsqueda" },
+    "close": { "text": "Cerrar búsqueda" },
+    "tabs": {
+      "all": { "text": "Todo" },
+      "models": { "text": "Modelos" },
+      "products": { "text": "Productos" },
+      "characters": { "text": "Personajes" },
+      "community": { "text": "Comunidad" },
+      "apps": { "text": "Aplicaciones" },
+      "originals": { "text": "Originals" }
+    },
+    "recent": { "text": "Recientes" },
+    "trending": { "text": "Tendencias" },
+    "noResults": { "text": "Sin resultados para «{query}»" },
+    "openShortcut": { "text": "Abrir búsqueda, Comando K" }
   },
   "badges": {
     "new": {

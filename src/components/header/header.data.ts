@@ -95,6 +95,16 @@ const imageMenu: MegaColumn[] = [
   },
 ];
 
+export const IMAGE_MODEL_MENU_ITEMS: MegaItem[] = imageMenu
+  .find((column) => column.titleKey === "header.models")!
+  .items.filter((entry) => imageModelIdFromHref(entry.href) != null);
+
+export function imageModelIdFromHref(href: string): string | undefined {
+  const url = new URL(href, "https://higgsfield.ai");
+  if (url.pathname !== "/ai/image") return undefined;
+  return url.searchParams.get("model") ?? undefined;
+}
+
 const videoMenu: MegaColumn[] = [
   {
     titleKey: "header.features",

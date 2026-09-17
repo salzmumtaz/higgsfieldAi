@@ -1,13 +1,19 @@
 import type { ReactNode } from "react";
+import { useRouterState } from "@tanstack/react-router";
 import { Footer } from "@/components/footer/Footer";
 import { SiteFooter } from "@/components/footer/SiteFooter";
 import { Header } from "@/components/header/Header";
 import { PromotionHeader } from "@/components/header/PromotionHeader";
 import { AuthModal } from "@/features/auth/AuthModal";
+import { SearchModal } from "@/features/search/SearchModal";
+import { UpgradeModal } from "@/features/upgrade/UpgradeModal";
 import { useT } from "@/lib/i18n";
 
 export function AppShell({ children }: { children: ReactNode }) {
   const t = useT();
+  const isImageShell = useRouterState({
+    select: (state) => state.location.pathname === "/ai/image",
+  });
   const mobileNav = [
     t("nav.explore"),
     t("nav.community"),
@@ -24,8 +30,12 @@ export function AppShell({ children }: { children: ReactNode }) {
         {children}
       </main>
 
-      <Footer />
-      <SiteFooter />
+      {isImageShell ? null : (
+        <>
+          <Footer />
+          <SiteFooter />
+        </>
+      )}
 
       <nav
         className="fixed inset-x-0 bottom-0 z-[51] border-t border-border-subtle bg-page md:hidden"
@@ -48,6 +58,8 @@ export function AppShell({ children }: { children: ReactNode }) {
       </nav>
 
       <AuthModal />
+      <UpgradeModal />
+      <SearchModal />
     </div>
   );
 }

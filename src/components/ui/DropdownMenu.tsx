@@ -30,6 +30,22 @@ export function DropdownMenuContent({
   );
 }
 
+export function DropdownMenuItem({
+  className,
+  ...props
+}: ComponentProps<typeof DropdownMenuPrimitive.Item>) {
+  return (
+    <DropdownMenuPrimitive.Item
+      className={cn(
+        "flex cursor-pointer items-center gap-2 rounded-lg px-2 py-1.5 text-sm outline-none select-none",
+        "text-fg data-[highlighted]:bg-overlay-hover",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
 export function DropdownMenuRadioItem({
   className,
   children,

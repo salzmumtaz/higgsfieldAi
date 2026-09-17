@@ -1,6 +1,7 @@
 import type { SVGProps } from "react";
 import { EnterpriseIcon } from "@/assets/icons/EnterpriseIcon";
 import { PricingIcon } from "@/assets/icons/PricingIcon";
+import { SearchIcon } from "@/assets/icons/SearchIcon";
 import { LanguageMenu } from "@/components/header/LanguageMenu";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
@@ -20,10 +21,23 @@ export function HeaderActions() {
   const t = useT();
   const user = useAppStore((state) => state.user);
   const openAuthModal = useAppStore((state) => state.openAuthModal);
+  const openSearch = useAppStore((state) => state.openSearch);
   const signOut = useAppStore((state) => state.signOut);
 
   return (
     <div className="ml-auto flex shrink-0 items-center gap-1">
+      {user ? (
+        <button
+          type="button"
+          className={iconButtonClass}
+          aria-label={t("header.search")}
+          title={t("search.openShortcut")}
+          onClick={openSearch}
+        >
+          <SearchIcon className="size-5" />
+        </button>
+      ) : null}
+
       <a href="/pricing" className={cn(actionChipClass, "relative overflow-visible")}>
         <PricingIcon className="size-4" />
         {t("nav.pricing")}

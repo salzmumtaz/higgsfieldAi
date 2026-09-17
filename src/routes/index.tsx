@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { t } from "@/lib/i18n";
 import { AstraBanner } from "@/features/home/astra-banner/AstraBanner";
 import { GptImage2Section } from "@/features/home/community/GptImage2Section";
 import { MarketingStudioSection } from "@/features/home/community/MarketingStudioSection";
@@ -18,6 +19,9 @@ import { PhotodumpBanner } from "@/features/home/photodump-banner/PhotodumpBanne
 import { SupercomputerBanner } from "@/features/home/supercomputer-banner/SupercomputerBanner";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [{ title: t("meta.home") }],
+  }),
   component: HomePage,
 });
 

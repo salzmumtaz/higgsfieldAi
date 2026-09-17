@@ -4,14 +4,45 @@
     "image": { "text": "Image" },
     "video": { "text": "Video" },
     "audio": { "text": "Audio" },
+    "mcp": { "text": "MCP" },
+    "api": { "text": "API" },
+    "chatgptPlugin": { "text": "ChatGPT Plugin" },
     "genjutsu": { "text": "Genjutsu" },
     "effects": { "text": "Effects" },
+    "cinemaStudio": { "text": "Cinema Studio" },
+    "marketingStudio": { "text": "Marketing Studio" },
+    "supercomputer": { "text": "Supercomputer" },
+    "threeDJutsu": { "text": "3D Jutsu" },
+    "edit": { "text": "Edit" },
+    "academy": { "text": "Academy" },
     "community": { "text": "Community" },
+    "contests": { "text": "Contests" },
+    "plugins": { "text": "Plugins" },
+    "canvas": { "text": "Canvas" },
+    "originals": { "text": "Originals" },
     "library": { "text": "Library" },
     "profile": { "text": "Profile" },
     "pricing": { "text": "Pricing" },
+    "enterprise": { "text": "Enterprise" },
     "login": { "text": "Login" },
     "signUp": { "text": "Sign Up" }
+  },
+  "header": {
+    "primary": { "text": "Primary" },
+    "logo": { "text": "Higgsfield" },
+    "search": { "text": "Search" },
+    "assets": { "text": "Assets" },
+    "notifications": { "text": "Notifications" },
+    "account": { "text": "Account" },
+    "openMenu": { "text": "Open menu" },
+    "language": { "text": "Change language" },
+    "features": { "text": "Features" },
+    "models": { "text": "Models" },
+    "plugins": { "text": "Plugins" },
+    "pricingOff": { "text": "30% OFF" },
+    "promo": { "text": "Get an additional discount on premium plans after signing up" },
+    "promoCta": { "text": "Get your discount" },
+    "dismissPromo": { "text": "Dismiss" }
   },
   "actions": {
     "generate": { "text": "Generate" },
@@ -36,6 +67,12 @@
     "signUpFree": { "text": "Sign up and generate for free" },
     "continueGoogle": { "text": "Continue with Google" },
     "continueEmail": { "text": "Continue with Email" }
+  },
+  "home": {
+    "openProduct": { "text": "Open {title}" },
+    "nextFeatured": { "text": "Show next" },
+    "prevFeatured": { "text": "Show previous" },
+    "videoUnsupported": { "text": "Your browser does not support the video." }
   },
   "library": {
     "empty": { "text": "Your creations will appear here." }

@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes, Ref } from "react";
 import { cn } from "@/lib/cn";
 
-type ButtonVariant = "primary" | "secondary" | "ghost" | "icon";
+type ButtonVariant = "primary" | "secondary" | "ghost" | "icon" | "soft";
 type ButtonSize = "sm" | "md";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -22,6 +22,7 @@ const variantClasses: Record<ButtonVariant, string> = {
     "bg-surface-secondary text-fg border border-border-default hover:bg-surface-tertiary",
   ghost: "bg-transparent text-fg hover:bg-overlay-hover",
   icon: "bg-transparent text-fg hover:bg-overlay-hover px-0",
+  soft: "bg-brand-soft text-brand shadow-[var(--shadow-soft-inset)] hover:bg-[var(--bg-brand-soft-10)]",
 };
 
 export function Button({

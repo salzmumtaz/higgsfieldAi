@@ -1,0 +1,208 @@
+/*
+  Home section + gallery layout — normalized from live HTML in HAR
+  and THEME_REFERENCE.md. Card internals live in cards.reference.css.
+
+  LIVE = VERIFIED FROM LIVE CSS
+  HTML = captured live markup
+  COMPUTED = VERIFIED FROM COMPUTED STYLE
+  APPROX = APPROXIMATION
+*/
+
+/* ===== Page frame ===== */
+.container {
+  width: 100%;
+} /* LIVE */
+
+.max-w-8xl {
+  max-width: 120rem; /* LIVE --breakpoint-2xl on main container */
+}
+
+.page-gutter {
+  padding-inline: 16px; /* COMPUTED container padding-left 16px */
+} /* COMPUTED */
+
+/* Breakpoints LIVE tokens:
+   mobile 20rem / tablet 48rem / desktop 80rem / wide 120rem
+   Tailwind md in captured Home HTML = 48rem
+*/
+
+/* ===== Section chrome ===== */
+.home-section {
+  position: relative;
+  z-index: 0;
+  padding-top: 8px; /* HTML pt-2 */
+  margin-bottom: 24px; /* HTML mb-6 */
+} /* HTML */
+
+@media (min-width: 48rem) {
+  .home-section {
+    padding-top: 12px; /* md:pt-3 */
+    margin-bottom: 32px; /* md:mb-8 */
+  }
+}
+
+.home-section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* HTML gap-1 */
+} /* HTML */
+
+.home-section-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 26px; /* --hf-type-size-700 COMPUTED */
+  font-weight: 700;
+  line-height: 30px; /* COMPUTED */
+  letter-spacing: -1.2px; /* COMPUTED; tighter than token tight at this size */
+  text-transform: uppercase;
+  color: #d1fe17; /* HTML text-font-brand */
+} /* COMPUTED + HTML */
+
+.home-section-subtitle {
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px; /* --hf-type-size-200 */
+  font-weight: 400;
+  color: #828282; /* HTML text-font-secondary */
+} /* HTML + LIVE type recipe text-q-body-sm-regular */
+
+/* ===== Horizontal strip (Motion Designer / similar) ===== */
+.home-strip-scroller {
+  overflow-x: scroll;
+  min-width: 0;
+  scrollbar-width: none;
+  padding-inline: 16px; /* HTML px-4 */
+} /* HTML */
+
+.home-strip {
+  display: flex;
+  gap: 20px; /* HTML gap-5 */
+  min-width: 0;
+} /* HTML */
+
+.home-strip > * {
+  flex: 0 0 19.5rem;
+} /* HTML */
+
+@media (min-width: 48rem) {
+  .home-strip > * {
+    flex: 0 0 25rem;
+  }
+}
+
+@media (min-width: 80rem) {
+  .home-strip > * {
+    flex: 0 0 32rem; /* HTML xl:*:flex-[0_0_32rem] */
+  }
+}
+
+.home-strip-item {
+  display: grid;
+  grid-auto-flow: row dense;
+  gap: 12px; /* HTML gap-3 */
+  border-radius: 8px;
+  position: relative;
+  transition: filter 0.1s, color 0.1s;
+} /* HTML */
+
+.home-strip-item:hover {
+  color: #d1fe17; /* HTML hover:text-primary */
+}
+
+.home-strip-item:active {
+  filter: brightness(0.6);
+}
+
+.home-strip-media {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px; /* HTML rounded-lg */
+  aspect-ratio: 1.7777777777777777; /* HTML inline 16:9 */
+} /* HTML */
+
+/* ===== Community / project gallery (ProjectCard family) ===== */
+.community-project-gallery {
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  --community-gallery-gap: 1.25rem; /* 20px */
+  gap: 1.25rem;
+} /* LIVE */
+
+@media (max-width: 639px) {
+  .community-project-gallery {
+    --community-gallery-gap: 0.5rem;
+    gap: 0.5rem 0.75rem;
+  } /* LIVE */
+}
+
+/* Auto-fit project grid used on some Home blocks — HTML */
+.home-project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 16px; /* HTML gap-4 */
+  max-height: 38rem; /* HTML max-h-152 = 38rem */
+} /* HTML */
+
+@media (min-width: 40rem) {
+  .home-project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 48rem) {
+  .home-project-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-height: 25rem; /* md:max-h-100 */
+  }
+}
+@media (min-width: 64rem) {
+  .home-project-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    max-height: 38rem;
+  }
+}
+
+/* Generation / preset Home rows: same three card families everywhere.
+   Do not invent per-model (GPT/Soul/Seedance) grid CSS. */
+.home-generation-grid {
+  display: grid;
+  gap: 16px; /* APPROX THEME 8–16px; prefer 16px to match project grid HTML */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+} /* APPROX — headless community tiles were often empty */
+
+@media (min-width: 48rem) {
+  .home-generation-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 80rem) {
+  .home-generation-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+} /* APPROX */
+
+/* ===== View all / section footer ===== */
+.community-explore-grid-footer {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 1;
+  height: 12.5rem;
+  max-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-block: 2.5rem;
+  pointer-events: none;
+  background: linear-gradient(transparent, var(--community-page-background, #0f1113));
+} /* LIVE */
+
+.community-explore-grid-footer > * {
+  pointer-events: auto;
+} /* APPROX so the CTA is clickable */
+
+/* View-all control: q-button-secondary q-button-sm — see header.reference.css
+   Copy: "View all presets" / "Start generating" / "Try for free" from i18n.
+*/
+
+/* ===== Section body constraint (some marketing blocks) ===== */
+.section-body-narrow {
+  max-width: 42rem; /* COMPUTED max-w-2xl 672px */
+}

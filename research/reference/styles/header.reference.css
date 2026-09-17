@@ -1,0 +1,551 @@
+/*
+  Header / promo / nav / actions — normalized live rules.
+  Source: higgsfield.ai.har + captured header HTML + THEME_REFERENCE.md
+  Do not import this file into the rebuild. Imitate with our tokens.
+
+  Confidence:
+    LIVE = VERIFIED FROM LIVE CSS
+    COMPUTED = VERIFIED FROM COMPUTED STYLE
+    APPROX = APPROXIMATION
+*/
+
+/* ===== Tokens used (resolved) =====
+  --qc-text-tertiary: #a8a8a8          LIVE (nav default; not hf-text-tertiary #626262)
+  --qc-text-primary: #ffffff           LIVE / COMPUTED
+  --qc-brand-primary: #d1fe17          LIVE
+  --qc-overlay-hover: #ffffff0d        LIVE
+  --color-lime / primary: #d1fe17      LIVE
+  --color-primary-20: #d1fe1733        LIVE
+  --color-separator-card: #d9d9d90a    LIVE
+  --color-surface-primary: #1c1e20     LIVE
+  --hf-color-text-inverse: #1a1a1a     LIVE
+  --color-font-primary-reverted: #131517  LIVE
+  --header-height-v2: 52px             COMPUTED
+  --container-8xl: 96rem = 1536px      LIVE
+  --hf-radius-250: 10px                LIVE
+  --hf-space-1000: 40px                LIVE  (q-button-sm height in CSS)
+  header auth computed height: 36px    COMPUTED  (prefer 36px for Login/Sign up/language)
+*/
+
+/* ===== Promo bar (#header-promotion) ===== */
+#header-promotion {
+  /* LIVE HTML classes + LIVE utility */
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-rows: 1fr; /* collapsed: 0fr */
+  transition: grid-template-rows 0.3s cubic-bezier(0, 0, 0.2, 1); /* LIVE duration-300 ease-out */
+  background-color: #d1fe17; /* LIVE bg-lime!  (theme: brand) */
+  color: #131517; /* LIVE inline / font-primary-reverted */
+  border-bottom: 1px solid rgb(255 255 255 / 0.2);
+  box-shadow: 0 0 12px 0 rgb(209 254 23 / 0.5); /* LIVE */
+}
+
+#header-promotion[data-expanded="false"] {
+  grid-template-rows: 0fr; /* LIVE touring compact uses 0fr */
+}
+
+#header-promotion .inner {
+  min-height: 2.75rem; /* LIVE min-h-11 */
+  display: grid;
+  align-items: center;
+}
+
+/* Promo CTA chip — LIVE HTML */
+#header-promotion .promo-cta {
+  display: none; /* md:inline-flex */
+  height: 1.5rem;
+  align-items: center;
+  border-radius: 0.375rem;
+  padding-inline: 0.625rem;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  color: #131517;
+  background: #ffffff; /* APPROX: bg-page-primary-reverted on lime bar */
+  box-shadow: 0 2px 4px rgb(0 0 0 / 0.2);
+}
+
+@media (min-width: 48rem) {
+  #header-promotion .promo-cta {
+    display: inline-flex;
+  }
+}
+
+/* ===== Sticky chrome ===== */
+#header {
+  height: 52px; /* COMPUTED --header-height-v2 */
+  z-index: 51; /* COMPUTED */
+  color: #a8a8a8; /* LIVE #header { color: var(--qc-text-tertiary) } */
+  background: #0f1113; /* COMPUTED page canvas; sticky header has NO blur */
+}
+
+#header a:any-link {
+  color: inherit; /* LIVE */
+}
+
+/* ===== Logo ===== */
+.hf-logo {
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex: none;
+} /* LIVE */
+
+.hf-logo__fill {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  border-radius: 8px;
+  opacity: 1;
+} /* LIVE */
+
+.hf-logo__glyph {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  color: #1a1a1a;
+  display: block;
+} /* LIVE */
+
+/* ===== Scrollable nav ===== */
+.hfnav-scroll-host {
+  position: relative;
+  min-width: 0;
+  /* LIVE edge fade; --hfnav-fade-* swap to #000 when scrolled */
+  mask-image: linear-gradient(
+    to right,
+    var(--hfnav-fade-left, transparent),
+    #000 72px,
+    #000 calc(100% - 72px),
+    var(--hfnav-fade-right, transparent)
+  );
+}
+
+.hfnav-scroll-host[data-scroll-start] {
+  --hfnav-fade-left: #000;
+}
+.hfnav-scroll-host[data-scroll-end] {
+  --hfnav-fade-right: #000;
+}
+
+.hfnav-list {
+  /* LIVE HTML: m-0 flex list-none items-center gap-0 overflow-x-auto hide-scrollbar */
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  gap: 0; /* item padding supplies spacing */
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+} /* LIVE */
+
+/* ===== Nav item ===== */
+.hfnav-item {
+  /* LIVE CSS */
+  color: #a8a8a8;
+  padding: 0.25rem 0.5rem; /* 4px 8px */
+  /* LIVE HTML utilities composed: */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem; /* 4px; THEME also recorded 8px as item-to-item — padding-driven */
+  height: 36px; /* APPROX from h-9 in rebuild; live padding + 14px type */
+  border: 0;
+  background: transparent;
+  border-radius: 8px; /* rounded-lg */
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.875rem; /* --hf-type-size-200 */
+  font-weight: 500;
+  line-height: 1.25rem; /* APPROX from computed nav 14/20 */
+  transition: color 0.1s, background-color 0.1s;
+}
+
+.hfnav-item:hover,
+.hfnav-item[data-state="open"] {
+  color: #ffffff; /* LIVE --qc-text-primary */
+  background-color: #ffffff0d; /* LIVE hover:bg-qc-overlay-hover */
+}
+
+.hfnav-item[data-active],
+.hfnav-item[data-active]:hover,
+.hfnav-item[data-active][data-state="open"] {
+  color: #d1fe17; /* LIVE --qc-brand-primary */
+}
+
+.hfnav-separator {
+  margin-inline: 0.25rem; /* LIVE */
+  width: 1px;
+  height: 16px; /* APPROX from captured header HTML h-4 */
+  background: #ffffff1a; /* --hf-color-border-default */
+}
+
+/* ChatGPT Plugin only — LIVE CSS module */
+.hfnav-item-highlight:not([data-active]) {
+  color: #16cbd3;
+}
+.hfnav-item-highlight:not([data-active]) .hfnav-bar-badge {
+  color: #16cbd3;
+  background-color: #16cbd333;
+}
+
+/* Shimmer on ChatGPT Plugin label — LIVE */
+.shimmer-text {
+  position: relative;
+  display: inline-block;
+  color: var(--shimmer-text-base, currentColor);
+}
+.shimmer-text::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: transparent;
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 40%,
+    var(--shimmer-text-highlight, color-mix(in srgb, #fff 90%, transparent)) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-size: 400% 100%;
+  background-position: 100% 0;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-text-sweep 2s linear infinite;
+}
+@keyframes shimmer-text-sweep {
+  to {
+    background-position: 0 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shimmer-text::after {
+    animation: none;
+  }
+}
+
+/* ===== Nav bar New/Free badges ===== */
+.hfnav-bar-badge {
+  /* LIVE HTML + .bg-primary-20 / .text-primary */
+  white-space: nowrap;
+  line-height: 12px;
+  font-weight: 700;
+  font-size: 10px;
+  border-radius: 0.375rem;
+  padding: 0.125rem 0.375rem;
+  border: none;
+  color: #d1fe17;
+  background-color: #d1fe1733;
+}
+
+/* ===== Viewport (mega menu host; positioning in mega-menu.reference.css) ===== */
+.hfnav-viewport-position {
+  position: absolute;
+  top: 100%;
+  left: var(--hfnav-vp-left, 0);
+  z-index: 50;
+  display: flex;
+  justify-content: flex-start;
+  width: max-content;
+  perspective: 2000px;
+} /* LIVE */
+
+.hfnav-viewport {
+  box-sizing: content-box;
+  position: relative;
+  width: var(--radix-navigation-menu-viewport-width);
+  height: var(--radix-navigation-menu-viewport-height);
+  max-height: calc(100dvh - 100px);
+  margin-top: 8px;
+  overflow-y: auto;
+  border: 1px solid #d9d9d90a;
+  background-color: #1c1e20;
+  border-radius: 24px;
+  box-shadow: 0 20px 25px -5px #0000004d, 0 8px 10px -6px #0000004d;
+} /* LIVE */
+
+.hfnav-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: max-content;
+} /* LIVE */
+
+/* ===== Right actions ===== */
+.hfnav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-inline-start: auto;
+  flex: none;
+} /* LIVE */
+
+.hfnav-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+} /* LIVE */
+
+.hfnav-icon-trigger {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex: none;
+} /* LIVE */
+
+.hfnav-action,
+.hfnav-action-pricing {
+  /* Pricing / Enterprise — resting chip, not hover-only */
+  position: relative;
+  height: 36px;
+  padding: 0 8px;
+  gap: 6px;
+  border-radius: 10px;
+  color: #ffffff;
+  background-color: #ffffff0d; /* overlay-hover */
+  box-shadow: inset 0 1.5px 3px #ffffff0d;
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  overflow: visible;
+} /* LIVE (user CSS + captured HTML classes; same wash as .hfnav-language) */
+
+.hfnav-discount {
+  color: #fff;
+  min-width: 56px;
+  height: 16px;
+  font-family: "Space Grotesk Variable", "Space Grotesk", sans-serif; /* --qc-type-family-secondary */
+  white-space: nowrap;
+  pointer-events: none;
+  background: radial-gradient(39.71% 136.54% at 51.64% 117.31%, #f920d1 0%, #ed1572 100%);
+  border-radius: 6px;
+  place-items: center;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 10px;
+  display: grid;
+  position: absolute;
+  top: calc(100% - 8px);
+  left: 50%;
+  transform: translate(-50%);
+} /* LIVE (user-provided .hfnav-discount) */
+
+.hfnav-language {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  color: #ffffff;
+  background-color: #ffffff0d; /* --qc-transparent-light-05 ≈ overlay-hover */
+  box-shadow: inset 0 1.5px 3px #ffffff0d;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: filter 0.15s, color 0.15s;
+} /* LIVE */
+.hfnav-language svg {
+  width: 16px;
+  height: 16px;
+}
+.hfnav-language[aria-expanded="true"] {
+  color: #d1fe17;
+}
+
+.hfnav-auth-login {
+  /* Login — LIVE; COMPUTED bg rgba(209,254,23,0.08) */
+  color: #d1fe17;
+  background-color: #d1fe1714; /* CSS; computed 0.08 */
+  box-shadow: inset 0 2px 3px #ffffff08;
+}
+
+/* Sign up uses q-button-marketing-primary + q-button-sm — see button block */
+
+.hfnav-mobile-only {
+  /* LIVE: Instagram is display:none on desktop */
+}
+
+@media (min-width: 48rem) {
+  .hfnav-mobile-only {
+    display: none;
+  }
+}
+
+/* ===== Shared buttons used in header ===== */
+.q-button {
+  isolation: isolate;
+  position: relative;
+  overflow: hidden;
+  display: inline-grid;
+  grid-auto-flow: column;
+  place-content: center;
+  align-items: center;
+  max-width: 100%;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  text-align: center;
+  outline: none;
+  transition-property: color, background-color, border-color, box-shadow;
+  transition-duration: 0.15s; /* --hf-duration-150 LIVE alias */
+} /* LIVE */
+
+.q-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background-color: transparent;
+  transition: background-color 0.15s cubic-bezier(0, 0, 0.2, 1);
+} /* LIVE */
+
+.q-button:hover::after,
+.q-button:focus-visible::after {
+  background-color: rgb(255 255 255 / 0.2); /* --hf-color-transparent-light-20 APPROX 20% white */
+}
+
+.q-button:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.q-button-sm {
+  height: 40px; /* CSS --hf-space-1000; header COMPUTED 36px — use 36px in header */
+  min-width: 40px;
+  gap: 6px;
+  padding: 8px 16px; /* header COMPUTED padding-inline 12px */
+  border-radius: 10px;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px; /* APPROX */
+} /* LIVE */
+
+.q-button-md {
+  height: 48px;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 18px; /* --hf-type-size-400 1.125rem */
+  font-weight: 600;
+} /* LIVE + COMPUTED */
+
+.q-button-brand-soft {
+  background-color: rgb(209 254 23 / 0.1); /* --hf-color-transparent-lime-10 */
+  color: #d1fe17;
+} /* LIVE; Login COMPUTED 0.08 */
+
+.q-button-primary {
+  background-color: #d1fe17;
+  color: #1a1a1a;
+} /* LIVE */
+
+.q-button-marketing-primary {
+  background-color: #d1fe17;
+  color: #1a1a1a;
+  border: 0 solid transparent;
+  /* COMPUTED lime primary shadow */
+  box-shadow:
+    inset 0 -3px 0 rgb(130, 155, 25),
+    0 6px 4px rgb(0 0 0 / 0.25),
+    0 32px 24px rgb(0 0 0 / 0.15);
+} /* LIVE + COMPUTED */
+
+.q-button:focus-visible {
+  outline: 2px solid transparent;
+  box-shadow:
+    0 0 0 2px #131416,
+    0 0 0 4px #d1fe17;
+} /* LIVE --hf-color-border-focus */
+
+/* ===== Language dropdown (header globe) ===== */
+.q-dropdown-content {
+  --q-dropdown-radius: 12px;
+  backdrop-filter: blur(40px); /* --hf-space-1000 */
+  background-color: #23262abf; /* glass */
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px #ffffff0d;
+  padding: 8px;
+  gap: 2px;
+  box-sizing: border-box;
+  transition: opacity 0.18s;
+} /* LIVE */
+
+.q-dropdown-content.q-dropdown-popup {
+  width: 14rem; /* LIVE HTML w-56 */
+  overflow: hidden auto;
+}
+
+.q-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px; /* 32+4 */
+  padding: 8px;
+  border-radius: 8px;
+  color: #ffffff;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+} /* LIVE */
+
+.q-menu-item:hover,
+.q-menu-item[data-highlighted],
+.q-menu-item[data-checked] {
+  background-color: #ffffff0d;
+} /* LIVE */
+
+.q-menu-item[data-checked],
+.bg-white-5 {
+  background-color: #ffffff0d; /* LIVE --color-white-5 */
+}
+
+.q-menu-item-icon {
+  width: 20px;
+  height: 20px;
+} /* LIVE --hf-space-500; HTML flag well is size-5 rounded-full */
+
+.q-dropdown-check {
+  width: 16px;
+  height: 16px;
+  color: #ffffff;
+} /* LIVE */
+
+/* ===== Responsive ===== */
+@media (max-width: 47.99rem) {
+  /* LIVE: desktop-only language / login / enterprise hidden */
+  .hfnav-list {
+    display: none;
+  } /* APPROX: live hides desktop nav; mobile uses bottom bar */
+}

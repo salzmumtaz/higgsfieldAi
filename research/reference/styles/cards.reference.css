@@ -1,0 +1,277 @@
+/*
+  Three Home card families + shared media / creator / Like / Recreate.
+  Same components for GPT Image, Soul, Seedance, etc. — no per-section CSS.
+
+  LIVE = VERIFIED FROM LIVE CSS
+  HTML = captured live markup
+  COMPUTED = VERIFIED FROM COMPUTED STYLE
+  APPROX = APPROXIMATION
+  JS = class names from live JS in HAR (not a CSS file)
+*/
+
+/* ============================================================
+   1. ProjectCard  (data-higgsfield-projects-card / community-project-card)
+   ============================================================ */
+
+.project-card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* HTML gap-1 */
+  padding: 4px; /* HTML p-1 */
+  border-radius: 16px; /* HTML rounded-2xl = 1rem; COMPUTED effect/card 16px */
+  background: #1c1e20; /* HTML bg-surface-primary */
+  transition: background-color 0.2s;
+} /* HTML */
+
+.project-card:hover {
+  background: #2a2d32; /* HTML hover:bg-gray-12 — map to surface-tertiary APPROX */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card {
+    transition: none;
+  }
+}
+
+.project-card-trigger {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  border-radius: inherit;
+} /* JS + LIVE */
+
+.project-card-trigger:focus-visible {
+  outline: 2px solid #d1fe17;
+  outline-offset: -2px;
+} /* LIVE */
+
+.project-card-border {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1);
+} /* LIVE --hf-color-transparent-light-10 */
+
+.project-card:has(:focus-visible) .project-card-border {
+  box-shadow: inset 0 0 0 2px #d1fe17;
+} /* LIVE */
+
+.project-card-info {
+  transition: opacity 0.15s, visibility 0s linear 0.15s;
+} /* LIVE */
+
+.project-card[data-selected="true"] .project-card-info {
+  visibility: hidden;
+  opacity: 0;
+} /* LIVE */
+
+.project-card-author {
+  position: relative;
+  z-index: 40;
+  pointer-events: auto;
+  min-width: 0;
+} /* LIVE */
+
+/* Hairline overlay used on some project tiles — HTML inline mask */
+.project-card-sheen {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  border-radius: inherit;
+  padding: 1px;
+  mix-blend-mode: overlay;
+} /* HTML */
+
+/* ============================================================
+   2. GenerationCard  (community publication / like + recreate)
+   Headless Home tiles were often empty. Combine COMPUTED Recreate,
+   JS Like classes, and ProjectCard media/chrome.
+   ============================================================ */
+
+.generation-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px; /* COMPUTED card radius */
+  background: #1c1e20;
+} /* APPROX structure; radius COMPUTED */
+
+.generation-card-media {
+  position: relative;
+  overflow: hidden;
+  border-radius: inherit;
+  width: 100%;
+  background: #18191c;
+} /* APPROX */
+
+.generation-card-media img,
+.generation-card-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+} /* APPROX */
+
+/* Hover stack: Recreate + Like become visible */
+.generation-card .recreate-overlay,
+.generation-card .like-control {
+  opacity: 0;
+  transition: opacity 0.2s cubic-bezier(0, 0, 0.2, 1);
+} /* COMPUTED Recreate 0→1 over 0.2s ease-out */
+
+.generation-card:hover .recreate-overlay,
+.generation-card:hover .like-control,
+.generation-card:focus-within .recreate-overlay,
+.generation-card:focus-within .like-control {
+  opacity: 1;
+}
+
+/* ============================================================
+   3. PresetCard  (Effects / Genjutsu tiles)
+   COMPUTED radius 16px. Recreate overlay same as GenerationCard.
+   ============================================================ */
+
+.preset-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px; /* COMPUTED */
+  background: #1c1e20;
+} /* COMPUTED + APPROX */
+
+.preset-card-media {
+  position: relative;
+  overflow: hidden;
+  border-radius: inherit;
+} /* APPROX */
+
+/* ============================================================
+   Shared: card media
+   ============================================================ */
+
+.card-media {
+  position: relative;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.card-media > img,
+.card-media > video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============================================================
+   Shared: creator / avatar row
+   ============================================================ */
+
+.creator-row {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* APPROX --hf-space-200 */
+  min-width: 0;
+} /* APPROX */
+
+.creator-avatar {
+  width: 24px; /* APPROX --hf-icon-lg; live Like/author compact */
+  height: 24px;
+  border-radius: 9999px;
+  object-fit: cover;
+  background: #23262a;
+  flex: none;
+} /* APPROX */
+
+.creator-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 500;
+  color: #f7f7f8;
+} /* APPROX */
+
+/* ============================================================
+   Shared: Like control
+   JS: pill, variant base, sm|md,
+       "border-0 backdrop-blur-[2rem] bg-white/8!"
+       aria-pressed for liked
+   ============================================================ */
+
+.like-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 0;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.08); /* JS bg-white/8! */
+  backdrop-filter: blur(32px); /* JS blur-[2rem] */
+  color: #ffffff;
+  cursor: pointer;
+  padding: 4px 8px; /* APPROX sm */
+} /* JS */
+
+.like-control[aria-pressed="true"] {
+  color: #d1fe17; /* APPROX liked = brand; not a dedicated LIVE color */
+}
+
+.like-control--blurred {
+  /* JS profile-feed-item-like-button--blurred — extra frost on busy media */
+}
+
+/* ============================================================
+   Shared: Recreate overlay
+   COMPUTED on Home: bg rgba(209,254,23,0.10), blur(8px),
+   Inter 14px / 600 / 16px lh, color #d1fe17,
+   height ~40px, radius 10px (q-button-sm)
+   opacity 0 until card hover (0.2s ease-out)
+   ============================================================ */
+
+.recreate-overlay {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding-inline: 12px;
+  border-radius: 10px;
+  border: 0;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  color: #d1fe17;
+  background: rgb(209 254 23 / 0.1);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: opacity 0.2s cubic-bezier(0, 0, 0.2, 1), filter 0.2s;
+} /* COMPUTED */
+
+.recreate-overlay:hover {
+  filter: brightness(1.1);
+}
+
+.recreate-overlay:focus-visible {
+  outline: 2px solid #d1fe17;
+  outline-offset: 2px;
+} /* COMPUTED focus pattern */
+
+/* Mixed Studio recreate scrim (NOT Home card overlay) — LIVE, out of Home scope
+   .ms2-recreate-overlay { fixed inset-0 z-50 bg overlay-scrim backdrop-blur-xl }
+*/
+
+/* ============================================================
+   Hover / active / open (cards)
+   ============================================================ */
+
+.generation-card:active,
+.preset-card:active,
+.project-card:active,
+.home-strip-item:active {
+  filter: brightness(0.6); /* HTML active:brightness-60 on several discovery tiles */
+} /* HTML */
+
+/* Logged-out Like / Recreate click → Auth modal (behavior, not CSS). */

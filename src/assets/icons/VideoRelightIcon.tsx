@@ -1,0 +1,7 @@
+import type { SVGProps } from "react";
+
+export function VideoRelightIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}><path d="M12 15.75H18.5518C18.9433 15.75 19.2988 15.9784 19.4614 16.3345L20.6034 18.8345C20.9059 19.4968 20.4219 20.25 19.6938 20.25H12M12 15.75H5.44816C5.05668 15.75 4.70121 15.9784 4.53856 16.3345L3.39658 18.8345C3.09407 19.4968 3.57809 20.25 4.30618 20.25H12M12 15.75V20.25M12 9.75V11.25M18.75 3.75H20.25M3.75 3.75H5.25M7.5 8L6.5 9M16.5 8L17.5 9M8.83697 3.75C9.17555 5.18335 10.4632 6.25 12 6.25C13.5368 6.25 14.8245 5.18335 15.163 3.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+  );
+}

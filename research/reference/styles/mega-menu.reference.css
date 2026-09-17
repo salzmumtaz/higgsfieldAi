@@ -1,0 +1,180 @@
+/*
+  Mega menu — normalized from captured HTML (extractsvgs / live anchors)
+  plus .hfnav-viewport CSS. Do not import. Imitate with our tokens.
+
+  LIVE = VERIFIED FROM LIVE CSS
+  HTML = VERIFIED FROM captured live HTML class lists
+  COMPUTED = VERIFIED FROM COMPUTED STYLE
+  APPROX = APPROXIMATION
+*/
+
+/* ===== Host (see also header.reference.css) ===== */
+.hfnav-viewport-position {
+  position: absolute;
+  top: 100%;
+  left: var(--hfnav-vp-left, 0px);
+  z-index: 50;
+  width: max-content;
+  display: flex;
+} /* LIVE */
+
+/*
+  --hfnav-vp-left is set in JS on open (LIVE):
+  left = clamp(0, trigger.left - root.left, window.innerWidth - 8 - root.left - menuWidth)
+  Image/Video/Audio historically aligned to .container padding unless the open value
+  is Plugins, which always follows the trigger. Rebuild: always follow the trigger.
+*/
+
+.hfnav-viewport {
+  margin-top: 8px;
+  max-height: calc(100dvh - 100px);
+  border-radius: 24px;
+  border: 1px solid #d9d9d90a;
+  background: #1c1e20; /* --color-surface-primary; rebuild often uses surface-section #18191c — prefer LIVE primary */
+  box-shadow: 0 20px 25px -5px #0000004d, 0 8px 10px -6px #0000004d;
+  overflow-y: auto;
+} /* LIVE */
+
+/* ===== Columns ===== */
+.mega-root {
+  display: grid;
+  grid-auto-flow: column dense;
+  padding: 4px; /* HTML p-1 */
+} /* HTML */
+
+.mega-column {
+  min-width: 18rem; /* HTML min-w-72 */
+  padding: 8px;
+  padding-top: 12px; /* HTML p-2 pt-3 — room for well badges */
+} /* HTML */
+
+.mega-column-title {
+  padding-inline: 8px;
+  font-size: 14px;
+  color: #828282; /* HTML text-font-secondary */
+} /* HTML + LIVE token */
+
+.mega-column-list {
+  margin-top: 4px;
+  max-height: min(70vh, 36rem); /* APPROX rebuild; live scrolls inside viewport */
+  overflow-y: auto;
+} /* APPROX */
+
+/* ===== Row ===== */
+.mega-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 12px; /* HTML gap-3 */
+  padding: 8px;
+  border-radius: 1rem; /* HTML rounded-2xl = 16px */
+  text-decoration: none;
+  transition: background-color 0.1s;
+} /* HTML */
+
+.mega-row:hover {
+  background: #0f1113; /* HTML hover:bg-page-primary → #131517 token; COMPUTED page #0f1113 */
+} /* HTML */
+
+.mega-row:active {
+  filter: brightness(0.6); /* HTML active:brightness-60 */
+} /* HTML */
+
+.mega-row-copy {
+  display: grid;
+  grid-auto-flow: row dense;
+  gap: 4px; /* HTML gap-1 */
+} /* HTML */
+
+.mega-row-title {
+  font-family: "Space Grotesk", sans-serif; /* HTML font-grotesk */
+  font-size: 14px; /* HTML text-caption-l — size token not fully listed; COMPUTED caption 14px */
+  font-weight: 500;
+  color: #f7f7f8;
+} /* HTML + COMPUTED */
+
+.mega-row-description {
+  font-size: 14px;
+  color: #828282;
+} /* HTML text-sm text-font-secondary */
+
+/* ===== Icon well ===== */
+.mega-well {
+  position: relative;
+  display: grid;
+  width: 48px; /* HTML size-12 */
+  height: 48px;
+  place-items: center;
+  border-radius: 12px; /* HTML rounded-xl */
+  border: 1px solid transparent;
+  background: #23262a; /* HTML bg-surface-secondary */
+  color: #f7f7f8;
+} /* HTML */
+
+.mega-well svg,
+.mega-well img {
+  width: 24px;
+  height: 24px;
+} /* HTML [&_svg]:size-6 */
+
+/* Well border by badge — LIVE HTML */
+.mega-well[data-badge="new"] {
+  border-color: #d1fe173d; /* border-surface-brand-alpha-1 */
+}
+.mega-well[data-badge="top"] {
+  border-color: #ff005b3d; /* border-surface-brand-secondary-alpha-1 LIVE #ff005b */
+}
+.mega-well[data-badge="seedance-top"] {
+  border-color: #3cd8ff; /* HTML border-[#3CD8FF]! */
+}
+
+/* ===== Well badges (TOP / NEW) — LIVE HTML ===== */
+.mega-badge {
+  position: absolute;
+  top: -12px; /* -top-3 */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mega-badge-pill {
+  display: inline-block;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding-inline: 6px;
+  border-radius: 2px; /* rounded-sm */
+  transform: skewX(-12deg);
+}
+
+.mega-badge-pill[data-color="lime"] {
+  background: #d1fe17; /* bg-font-brand */
+  color: #131517; /* text-font-primary-reverted */
+}
+
+.mega-badge-pill[data-color="pink"] {
+  background: #ff005b; /* bg-font-brand-secondary LIVE */
+  color: #ffffff; /* text-font-primary */
+}
+
+.mega-badge-pill[data-color="cyan"] {
+  color: #ffffff;
+  background-image: linear-gradient(
+    90deg,
+    rgb(50, 89, 180) 0%,
+    rgb(60, 140, 255) 50%,
+    rgb(0, 200, 210) 75%,
+    rgb(120, 201, 230) 100%
+  ); /* LIVE Seedance TOP */
+}
+
+/* Adobe plugin marks — LIVE HTML */
+.mega-adobe-mark {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  color: #ffffff;
+}

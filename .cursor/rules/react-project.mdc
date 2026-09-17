@@ -174,11 +174,14 @@ Use effects only to initialize/clean up external state.
 ## Styling
 
 - Semantic CSS custom properties from `research/reference/theme/tokens.dark.json` / `research/THEME_REFERENCE.md`
+- Component metrics from `research/COMPONENT_STYLE_REFERENCE.md` and `research/reference/styles/*.reference.css`
 - Tailwind mapped to those variables
 - Inter for UI; Space Grotesk only for verified accent/headline usage
 - One dark theme initially
 
 Do not copy Higgsfield production CSS.
+
+Do not inspect or parse the raw HAR during normal implementation. Use the normalized research/reference files first. Only return to the HAR when a required value is genuinely missing, and explicitly state what is missing before doing so.
 
 ## i18n
 

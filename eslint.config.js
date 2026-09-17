@@ -50,7 +50,7 @@ export default tseslint.config(
     },
   },
   {
-    files: ["src/routes/**/*.{ts,tsx}"],
+    files: ["src/routes/**/*.{ts,tsx}", "src/assets/icons/megaMenuIcons.tsx"],
     rules: {
       "react-refresh/only-export-components": "off",
     },

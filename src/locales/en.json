@@ -72,7 +72,16 @@
     "openProduct": { "text": "Open {title}" },
     "nextFeatured": { "text": "Show next" },
     "prevFeatured": { "text": "Show previous" },
-    "videoUnsupported": { "text": "Your browser does not support the video." }
+    "videoUnsupported": { "text": "Your browser does not support the video." },
+    "astra": {
+      "heading": { "text": "Higgsfield MCP with GPT-6 Astra" },
+      "kicker": { "text": "Higgsfield MCP with" },
+      "description": {
+        "text": "Build games, motion graphics, and interactive 3D experiences with Higgsfield MCP"
+      },
+      "installPlugin": { "text": "Install Higgsfield plugin" },
+      "exploreUseCases": { "text": "Explore use cases" }
+    }
   },
   "library": {
     "empty": { "text": "Your creations will appear here." }

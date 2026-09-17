@@ -4,10 +4,11 @@ import { HiggsfieldMark } from "@/assets/icons/HiggsfieldMark";
 import { HeaderActions } from "@/components/header/HeaderActions";
 import { HeaderNav } from "@/components/header/HeaderNav";
 import { cn } from "@/lib/cn";
-import { t } from "@/lib/i18n";
+import { useT } from "@/lib/i18n";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 
 export function Header() {
+  const t = useT();
   const rootRef = useRef<HTMLElement>(null);
   const positionerRef = useRef<HTMLDivElement>(null);
   const [openValue, setOpenValue] = useState("");

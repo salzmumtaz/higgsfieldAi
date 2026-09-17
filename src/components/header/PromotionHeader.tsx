@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { PromoTagIcon } from "@/assets/icons/PromoTagIcon";
 import { cn } from "@/lib/cn";
-import { t } from "@/lib/i18n";
+import { useT } from "@/lib/i18n";
 
 export function PromotionHeader() {
+  const t = useT();
   const [expanded, setExpanded] = useState(true);
 
   return (

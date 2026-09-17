@@ -1,7 +1,7 @@
 import type { SVGProps } from "react";
 import { SoulIcon } from "@/assets/icons/SoulIcon";
 import { cn } from "@/lib/cn";
-import { t } from "@/lib/i18n";
+import { useT } from "@/lib/i18n";
 import type { QuickStartBadge, QuickStartItem } from "./quick-start.types";
 
 const badgeClass: Record<QuickStartBadge, string> = {
@@ -13,6 +13,7 @@ const badgeBaseClass =
   "pointer-events-none inline-block shrink-0 -skew-x-12 rounded-sm px-1.5 font-grotesk text-xs font-bold whitespace-nowrap uppercase";
 
 export function QuickStartCard({ item }: { item: QuickStartItem }) {
+  const t = useT();
   const badgeLabel = item.badge ? t(`badges.${item.badge}`) : null;
   const typeLabel =
     item.type === "video"

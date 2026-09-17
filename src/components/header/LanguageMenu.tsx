@@ -14,10 +14,16 @@ import { locales, setLocale, t, useLocale, type LocaleId } from "@/lib/i18n";
 const iconButtonClass =
   "inline-flex size-9 shrink-0 items-center justify-center rounded-control bg-overlay-hover text-white shadow-[inset_0_1.5px_3px_#ffffff0d] transition-[filter,color] duration-150 ease-out hover:brightness-110 data-[state=open]:text-brand";
 
-export function LanguageMenu() {
+export function LanguageMenu({
+  variant = "header",
+}: {
+  variant?: "header" | "footer";
+}) {
   const locale = useLocale();
   const [open, setOpen] = useState(false);
   const closeTimer = useRef<number>(0);
+  const current = locales.find((item) => item.id === locale) ?? locales[0];
+  const isFooter = variant === "footer";
 
   function openMenu() {
     window.clearTimeout(closeTimer.current);
@@ -31,16 +37,38 @@ export function LanguageMenu() {
 
   return (
     <div
-      className="hidden md:block"
+      className={isFooter ? "relative" : "hidden md:block"}
+      data-language-selector=""
       onPointerEnter={openMenu}
       onPointerLeave={scheduleClose}
     >
       <DropdownMenu open={open} onOpenChange={setOpen} modal={false}>
         <DropdownMenuTrigger
-          className={iconButtonClass}
+          data-language-selector=""
+          className={
+            isFooter
+              ? "flex items-center gap-2 whitespace-nowrap text-sm font-normal text-fg transition-colors hover:text-fg-secondary focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+              : iconButtonClass
+          }
           aria-label={t("header.language")}
         >
-          <LanguageIcon className="size-4" />
+          {isFooter && current ? (
+            <>
+              <span className="relative block size-5 overflow-hidden rounded-full bg-surface-primary">
+                <img
+                  src={current.flagSrc}
+                  alt={current.flagAlt}
+                  className="size-full object-cover"
+                />
+              </span>
+              <span className="flex items-center">
+                <span>{current.label}</span>
+                <ChevronIcon className="size-4 shrink-0" />
+              </span>
+            </>
+          ) : (
+            <LanguageIcon className="size-4" />
+          )}
         </DropdownMenuTrigger>
         <DropdownMenuContent
           onPointerEnter={openMenu}
@@ -78,6 +106,28 @@ export function LanguageMenu() {
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
+  );
+}
+
+function ChevronIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-hidden="true"
+    >
+      <path
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.5"
+        d="m8 10 3.646 3.646a.5.5 0 0 0 .708 0L16 10"
+      />
+    </svg>
   );
 }
 

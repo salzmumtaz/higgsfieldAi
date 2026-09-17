@@ -22,6 +22,11 @@
     "tryForFree": { "text": "Try for free", "sourceKey": "XjMylT" },
     "startGenerating": { "text": "Start generating", "sourceKey": "Rwpd6z" },
     "viewAllPresets": { "text": "View all presets", "sourceKey": "0lVJzX" },
+    "viewAllOf": { "text": "View all of {name}", "sourceKey": "RxLEzD" },
+    "learnMore": { "text": "Learn more", "sourceKey": "zwWKhA" },
+    "exploreCommunity": { "text": "Explore community", "sourceKey": "w87CGB" },
+    "openPreset": { "text": "Open preset", "sourceKey": "0ipUqC" },
+    "recreateThisExample": { "text": "Recreate this example", "sourceKey": "fVdnTB" },
     "upgrade": { "text": "Upgrade", "sourceKey": "kwkhPe" }
   },
   "video": {

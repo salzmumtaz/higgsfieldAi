@@ -1,24 +1,31 @@
 import type { ReactNode } from "react";
+import { Footer } from "@/components/footer/Footer";
+import { SiteFooter } from "@/components/footer/SiteFooter";
 import { Header } from "@/components/header/Header";
 import { PromotionHeader } from "@/components/header/PromotionHeader";
-import { t } from "@/lib/i18n";
-
-const mobileNav = [
-  t("nav.explore"),
-  t("nav.community"),
-  t("nav.library"),
-  t("nav.profile"),
-] as const;
+import { AuthModal } from "@/features/auth/AuthModal";
+import { useT } from "@/lib/i18n";
 
 export function AppShell({ children }: { children: ReactNode }) {
+  const t = useT();
+  const mobileNav = [
+    t("nav.explore"),
+    t("nav.community"),
+    t("nav.library"),
+    t("nav.profile"),
+  ] as const;
+
   return (
     <div className="flex min-h-dvh flex-col overflow-x-clip bg-page text-fg">
       <PromotionHeader />
       <Header />
 
-      <main className="min-w-0 flex-1 pb-[calc(var(--layout-mobile-nav)+env(safe-area-inset-bottom))] md:pb-0">
+      <main className="min-w-0 flex-1">
         {children}
       </main>
+
+      <Footer />
+      <SiteFooter />
 
       <nav
         className="fixed inset-x-0 bottom-0 z-[51] border-t border-border-subtle bg-page md:hidden"
@@ -39,6 +46,8 @@ export function AppShell({ children }: { children: ReactNode }) {
           ))}
         </div>
       </nav>
+
+      <AuthModal />
     </div>
   );
 }

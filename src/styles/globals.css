@@ -122,6 +122,31 @@
     padding-inline: var(--layout-gutter);
   }
 
+  .header-nav-scroll {
+    mask-image: linear-gradient(
+      to right,
+      var(--nav-fade-left, transparent),
+      #000 72px,
+      #000 calc(100% - 72px),
+      var(--nav-fade-right, transparent)
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      var(--nav-fade-left, transparent),
+      #000 72px,
+      #000 calc(100% - 72px),
+      var(--nav-fade-right, transparent)
+    );
+  }
+
+  .header-nav-scroll[data-scroll-start] {
+    --nav-fade-left: #000;
+  }
+
+  .header-nav-scroll[data-scroll-end] {
+    --nav-fade-right: #000;
+  }
+
   .type-page-title {
     font-family: var(--font-sans-family);
     font-size: var(--text-size-page);

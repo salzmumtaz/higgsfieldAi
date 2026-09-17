@@ -108,6 +108,40 @@
   --font-sans: var(--font-sans-family);
   --font-grotesk: var(--font-grotesk-family);
 
+  /* Space Grotesk heading recipes (live --text-brand-h-*). */
+  --text-brand-h-xxs: 1.25rem;
+  --text-brand-h-xxs--line-height: 1.75rem;
+  --text-brand-h-xxs--letter-spacing: -1%;
+  --text-brand-h-xxs--font-weight: 500;
+  --text-brand-h-xs: 1.5rem;
+  --text-brand-h-xs--line-height: 1.875rem;
+  --text-brand-h-xs--letter-spacing: -1%;
+  --text-brand-h-xs--font-weight: 500;
+  --text-brand-h-sm: 1.75rem;
+  --text-brand-h-sm--line-height: 2.25rem;
+  --text-brand-h-sm--letter-spacing: -2%;
+  --text-brand-h-sm--font-weight: 500;
+  --text-brand-h-md: 2.5rem;
+  --text-brand-h-md--line-height: 3rem;
+  --text-brand-h-md--letter-spacing: -2%;
+  --text-brand-h-md--font-weight: 500;
+  --text-brand-h-lg: 3rem;
+  --text-brand-h-lg--line-height: 3.5rem;
+  --text-brand-h-lg--letter-spacing: -2%;
+  --text-brand-h-lg--font-weight: 500;
+  --text-brand-h-xl: 4rem;
+  --text-brand-h-xl--line-height: 4.5rem;
+  --text-brand-h-xl--letter-spacing: -2%;
+  --text-brand-h-xl--font-weight: 500;
+  --text-brand-h-sm-caps-bold: 1.75rem;
+  --text-brand-h-sm-caps-bold--line-height: 2.25rem;
+  --text-brand-h-sm-caps-bold--letter-spacing: -4%;
+  --text-brand-h-sm-caps-bold--font-weight: 700;
+  --text-brand-h-md-caps-bold: 2.5rem;
+  --text-brand-h-md-caps-bold--line-height: 3rem;
+  --text-brand-h-md-caps-bold--letter-spacing: -4%;
+  --text-brand-h-md-caps-bold--font-weight: 700;
+
   --radius-control: 0.625rem;
   --radius-button: 0.75rem;
   --radius-card: 1rem;

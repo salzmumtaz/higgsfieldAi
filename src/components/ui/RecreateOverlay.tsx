@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes } from "react";
 import { cn } from "@/lib/cn";
-import { t } from "@/lib/i18n";
+import { useT } from "@/lib/i18n";
 
 type RecreateOverlayProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
@@ -10,6 +10,7 @@ export function RecreateOverlay({
   type = "button",
   ...props
 }: RecreateOverlayProps) {
+  const t = useT();
   return (
     <button
       type={type}

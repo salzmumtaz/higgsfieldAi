@@ -4,7 +4,8 @@ import { PricingIcon } from "@/assets/icons/PricingIcon";
 import { LanguageMenu } from "@/components/header/LanguageMenu";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
-import { t } from "@/lib/i18n";
+import { useT } from "@/lib/i18n";
+import { useAppStore } from "@/store/app-store";
 
 const iconButtonClass =
   "inline-flex size-9 shrink-0 items-center justify-center rounded-control text-white transition-colors duration-[var(--duration-fast)] ease-out hover:bg-overlay-hover";
@@ -16,6 +17,11 @@ const discountBadgeClass =
   "pointer-events-none absolute top-[calc(100%-8px)] left-1/2 grid h-4 min-w-14 -translate-x-1/2 place-items-center rounded-md px-1.5 py-0.5 font-grotesk text-[10px] leading-[10px] font-bold whitespace-nowrap text-white bg-[radial-gradient(39.71%_136.54%_at_51.64%_117.31%,#f920d1_0%,#ed1572_100%)]";
 
 export function HeaderActions() {
+  const t = useT();
+  const user = useAppStore((state) => state.user);
+  const openAuthModal = useAppStore((state) => state.openAuthModal);
+  const signOut = useAppStore((state) => state.signOut);
+
   return (
     <div className="ml-auto flex shrink-0 items-center gap-1">
       <a href="/pricing" className={cn(actionChipClass, "relative overflow-visible")}>
@@ -38,13 +44,30 @@ export function HeaderActions() {
 
       <span aria-hidden="true" className="mx-1 hidden h-4 w-px shrink-0 bg-border-default md:block" />
 
-      <Button variant="soft" size="sm" className="hidden md:inline-flex">
-        {t("nav.login")}
-      </Button>
+      {user ? (
+        <Button variant="ghost" size="sm" onClick={signOut}>
+          {t("auth.signOut")}
+        </Button>
+      ) : (
+        <>
+          <Button
+            variant="soft"
+            size="sm"
+            className="hidden md:inline-flex"
+            onClick={() => openAuthModal("login")}
+          >
+            {t("nav.login")}
+          </Button>
 
-      <Button variant="primary" size="sm">
-        {t("nav.signUp")}
-      </Button>
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={() => openAuthModal("signup")}
+          >
+            {t("nav.signUp")}
+          </Button>
+        </>
+      )}
 
       <button
         type="button"

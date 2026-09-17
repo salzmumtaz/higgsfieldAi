@@ -1,10 +1,25 @@
 import { useSyncExternalStore } from "react";
 import en from "../locales/en.json";
 
+type Messages = typeof en;
 type MessageLeaf = { text: string };
-type MessageNode = MessageLeaf | { [key: string]: MessageNode };
+
+type MessageKeyOf<T> = {
+  [K in keyof T & string]: T[K] extends MessageLeaf
+    ? K
+    : T[K] extends object
+      ? `${K}.${MessageKeyOf<T[K]>}`
+      : never;
+}[keyof T & string];
+
+export type MessageKey = MessageKeyOf<Messages>;
 
 export type LocaleId = "en" | "es" | "ja" | "ko" | "de";
+
+export type Translate = (
+  key: MessageKey,
+  vars?: Record<string, string | number>,
+) => string;
 
 export const locales: {
   id: LocaleId;
@@ -47,28 +62,30 @@ export function useLocale() {
   );
 }
 
-const messages = en as unknown as MessageNode;
+const messages = en as Messages;
 
-function readLeaf(node: MessageNode | undefined): string | undefined {
+function readLeaf(node: unknown): string | undefined {
   if (!node || typeof node !== "object") return undefined;
-  if ("text" in node && typeof node.text === "string") return node.text;
+  if ("text" in node && typeof (node as MessageLeaf).text === "string") {
+    return (node as MessageLeaf).text;
+  }
   return undefined;
 }
 
-function lookup(key: string): string | undefined {
+function lookup(key: MessageKey): string | undefined {
   const parts = key.split(".");
-  let node: MessageNode | undefined = messages;
+  let node: unknown = messages;
 
   for (const part of parts) {
     if (!node || typeof node !== "object" || "text" in node) return undefined;
-    node = node[part];
+    node = (node as Record<string, unknown>)[part];
   }
 
   return readLeaf(node);
 }
 
 export function t(
-  key: string,
+  key: MessageKey,
   vars?: Record<string, string | number>,
 ): string {
   const text = lookup(key) ?? key;
@@ -76,4 +93,10 @@ export function t(
   return text.replace(/\{(\w+)\}/g, (_, name: string) =>
     vars[name] == null ? `{${name}}` : String(vars[name]),
   );
+}
+
+/** Subscribe to locale changes, then translate. Use this in components — not `t` alone. */
+export function useT(): Translate {
+  useLocale();
+  return t;
 }

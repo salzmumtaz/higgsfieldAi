@@ -1,7 +1,7 @@
 import type { FeaturedSlide } from "@/features/home/featured-slider/featured-slider.types";
 import { useFeaturedVideoPlayback } from "@/features/home/featured-slider/featured-playback";
 import { cn } from "@/lib/cn";
-import { t } from "@/lib/i18n";
+import { useT } from "@/lib/i18n";
 
 const mediaInsetShadow =
   "shadow-[-0.5px_-0.5px_1px_0_rgba(255,255,255,0.12)_inset,0.8px_0.5px_0.5px_0_rgba(27,27,27,0.17)_inset]";
@@ -13,6 +13,7 @@ export function FeaturedCard({
   item: FeaturedSlide;
   inView: boolean;
 }) {
+  const t = useT();
   const { videoRef, playing, setPlaying } = useFeaturedVideoPlayback(inView);
   const openLabel = t("home.openProduct", { title: item.title });
   const mediaLabel = `${item.title} - ${item.description}`;

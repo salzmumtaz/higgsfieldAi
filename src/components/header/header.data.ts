@@ -1,4 +1,5 @@
 import type { StatusBadgeColor } from "@/components/ui/StatusBadge";
+import type { MessageKey } from "@/lib/i18n";
 
 export type NavBadge = "new" | "free" | "top";
 export type MegaBadge = "new" | "top";
@@ -23,7 +24,7 @@ export type MegaColumn = {
 export type HeaderNavLink = {
   type: "link";
   id: string;
-  labelKey: string;
+  labelKey: MessageKey;
   href: string;
   badge?: NavBadge;
   shimmer?: boolean;
@@ -32,7 +33,7 @@ export type HeaderNavLink = {
 export type HeaderNavMenu = {
   type: "menu";
   id: string;
-  labelKey: string;
+  labelKey: MessageKey;
   href: string;
   badge?: NavBadge;
   menu: MegaColumn[];

@@ -1,6 +1,6 @@
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { Link, useRouterState } from "@tanstack/react-router";
-import type { ComponentProps } from "react";
+import { useLayoutEffect, useRef, type ComponentProps } from "react";
 import { HeaderMegaMenu } from "@/components/header/HeaderMegaMenu";
 import {
   headerNav,
@@ -9,12 +9,13 @@ import {
 } from "@/components/header/header.data";
 import { ShimmerText } from "@/components/ui/ShimmerText";
 import { cn } from "@/lib/cn";
-import { t } from "@/lib/i18n";
+import { useT } from "@/lib/i18n";
 
 const navItemClass =
   "inline-flex h-9 shrink-0 items-center gap-1 rounded-lg px-2 text-sm font-medium whitespace-nowrap no-underline transition-colors duration-[var(--duration-fast)] ease-out text-fg-secondary hover:bg-overlay-hover hover:text-fg data-[state=open]:bg-overlay-hover data-[active]:text-brand data-[status=active]:text-brand";
 
 export function HeaderNav() {
+  const scrollRef = useRef<HTMLDivElement>(null);
   const { pathname, search } = useRouterState({
     select: (state) => ({
       pathname: state.location.pathname,
@@ -22,10 +23,35 @@ export function HeaderNav() {
     }),
   });
 
+  useLayoutEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    function syncScrollFade() {
+      const node = scrollRef.current;
+      if (!node) return;
+      const start = node.scrollLeft <= 1;
+      const end = node.scrollLeft + node.clientWidth >= node.scrollWidth - 1;
+      node.toggleAttribute("data-scroll-start", start);
+      node.toggleAttribute("data-scroll-end", end);
+    }
+
+    syncScrollFade();
+    el.addEventListener("scroll", syncScrollFade, { passive: true });
+    const observer = new ResizeObserver(syncScrollFade);
+    observer.observe(el);
+    if (el.firstElementChild) observer.observe(el.firstElementChild);
+    return () => {
+      el.removeEventListener("scroll", syncScrollFade);
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <div
+      ref={scrollRef}
       data-nav-scroll=""
-      className="hidden min-w-0 flex-1 overflow-x-auto overflow-y-hidden md:block [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+      className="header-nav-scroll hidden min-w-0 flex-1 overflow-x-auto overflow-y-hidden md:block [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
     >
       <NavigationMenu.List className="m-0 flex w-max list-none flex-nowrap items-center gap-2 p-0">
         {headerNav.map((entry) => (
@@ -50,6 +76,7 @@ function NavEntry({
   pathname: string;
   search: string;
 }) {
+  const t = useT();
   if (entry.type === "separator") {
     return (
       <li
@@ -132,6 +159,7 @@ function NavHref({
 }
 
 function NavBadgeMark({ badge }: { badge: NavBadge }) {
+  const t = useT();
   return (
     <span className="rounded-md bg-brand/20 px-1.5 py-0.5 text-[10px] leading-[12px] font-bold whitespace-nowrap text-brand">
       {t(`badges.${badge}`)}

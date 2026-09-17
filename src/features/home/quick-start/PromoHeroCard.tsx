@@ -1,6 +1,6 @@
 import { useEffect, useRef, type SVGProps } from "react";
 import { promoHero } from "./quick-start.data";
-import { t } from "@/lib/i18n";
+import { useT } from "@/lib/i18n";
 
 const overlayGradient =
   "linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 38%, rgba(0,0,0,0.25) 70%, rgba(0,0,0,0.15) 100%)";
@@ -15,6 +15,7 @@ const ctaBackground =
   "linear-gradient(180deg, rgba(255,255,20,0) 0%, #ffff14 100%), linear-gradient(90deg, #d1fe17 0%, #d1fe17 100%)";
 
 export function PromoHeroCard() {
+  const t = useT();
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {

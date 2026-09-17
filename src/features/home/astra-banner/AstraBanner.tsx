@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useId, useState, type CSSProperties } from "react";
-import { t } from "@/lib/i18n";
+import { useT } from "@/lib/i18n";
 import "./astra-banner.css";
 
 const PLUGIN_HREF =
@@ -55,6 +55,7 @@ const SIGNALS = [
 ] as const;
 
 export function AstraBanner() {
+  const t = useT();
   const reactId = useId().replace(/:/g, "");
   const archId = `${reactId}-arch`;
   const coreId = `${reactId}-core`;

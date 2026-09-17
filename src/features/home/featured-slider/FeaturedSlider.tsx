@@ -11,7 +11,7 @@ import { featuredItemInView } from "@/features/home/featured-slider/featured-pla
 import type { FeaturedSlide } from "@/features/home/featured-slider/featured-slider.types";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
-import { t } from "@/lib/i18n";
+import { useT } from "@/lib/i18n";
 
 const CARD_GAP_PX = 20;
 const SCROLLER_PAD_PX = 16;
@@ -36,6 +36,7 @@ export function FeaturedSlider({
   hasMore?: boolean;
   onEndReached?: () => void;
 }) {
+  const t = useT();
   const scrollerRef = useRef<HTMLDivElement>(null);
   const indexRef = useRef(0);
   const animatingRef = useRef(false);

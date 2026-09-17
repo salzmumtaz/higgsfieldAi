@@ -89,6 +89,16 @@
       "semibold": 600,
       "bold": 700,
       "black": 900
+    },
+    "brandHeading": {
+      "$comment": "Live --text-brand-h-* recipes. Size / line-height / letter-spacing / default weight 500. font-bold and *-caps-bold override weight/tracking.",
+      "xxs": { "fontSize": "1.25rem", "lineHeight": "1.75rem", "letterSpacing": "-1%" },
+      "xs": { "fontSize": "1.5rem", "lineHeight": "1.875rem", "letterSpacing": "-1%" },
+      "sm": { "fontSize": "1.75rem", "lineHeight": "2.25rem", "letterSpacing": "-2%" },
+      "md": { "fontSize": "2.5rem", "lineHeight": "3rem", "letterSpacing": "-2%" },
+      "lg": { "fontSize": "3rem", "lineHeight": "3.5rem", "letterSpacing": "-2%" },
+      "xl": { "fontSize": "4rem", "lineHeight": "4.5rem", "letterSpacing": "-2%" },
+      "capsLetterSpacing": "-4%"
     }
   },
   "radius": {

@@ -51,6 +51,11 @@
     "tryForFree": { "text": "Try for free" },
     "startGenerating": { "text": "Start generating" },
     "viewAllPresets": { "text": "View all presets" },
+    "viewAllOf": { "text": "View all of {name}" },
+    "learnMore": { "text": "Learn more" },
+    "exploreCommunity": { "text": "Explore community" },
+    "openPreset": { "text": "Open preset" },
+    "recreateThisExample": { "text": "Recreate this example" },
     "upgrade": { "text": "Upgrade" }
   },
   "video": {
@@ -66,9 +71,12 @@
     "welcome": { "text": "Welcome to Higgsfield" },
     "signUpFree": { "text": "Sign up and generate for free" },
     "continueGoogle": { "text": "Continue with Google" },
-    "continueEmail": { "text": "Continue with Email" }
+    "continueEmail": { "text": "Continue with Email" },
+    "signOut": { "text": "Sign out" }
   },
   "home": {
+    "communityPost": { "text": "Community post made by @{username}" },
+    "profilePicture": { "text": "{username}'s profile picture" },
     "openProduct": { "text": "Open {title}" },
     "nextFeatured": { "text": "Show next" },
     "prevFeatured": { "text": "Show previous" },
@@ -81,7 +89,108 @@
       },
       "installPlugin": { "text": "Install Higgsfield plugin" },
       "exploreUseCases": { "text": "Explore use cases" }
+    },
+    "visualEffects": {
+      "title": { "text": "Visual Effects" },
+      "description": {
+        "text": "Big-budget visual effects, from explosions to surreal transformations."
+      }
+    },
+    "genjutsu": {
+      "title": { "text": "Higgsfield Genjutsu" },
+      "description": {
+        "text": "Reality Manipulation — transfer motion into new scenes, or swap details while everything else stays as filmed."
+      },
+      "descriptionMobile": {
+        "text": "Take the motion and recast it with your characters, locations, and products, or swap specific elements while keeping the rest untouched."
+      },
+      "objectsSwap": { "text": "Objects swap" },
+      "motionTransfer": { "text": "Motion transfer" },
+      "newModel": { "text": "New model" },
+      "showSourceVideo": { "text": "Show source video" },
+      "showVariant": { "text": "Show variant {index}" },
+      "showcase": { "text": "Showcase" },
+      "reference": { "text": "Reference" },
+      "output": { "text": "Output {index}" },
+      "example": { "text": "Genjutsu example" }
+    },
+    "seedance25": {
+      "title": { "text": "Seedance 2.5" },
+      "description": { "text": "The most advanced AI video model" }
+    },
+    "projects": {
+      "title": { "text": "Explore the inside of every project" },
+      "description": {
+        "text": "See all prompts, assets, and how each project was created"
+      }
+    },
+    "gptImage2": {
+      "title": { "text": "GPT Image 2" },
+      "description": { "text": "4K images with near-perfect text rendering." }
+    },
+    "marketingStudio": {
+      "title": { "text": "Marketing Studio" },
+      "description": {
+        "text": "See what creators and brands are making with Marketing Studio."
+      }
+    },
+    "seedance20": {
+      "title": { "text": "Seedance 2.0" },
+      "description": {
+        "text": "Browse premium AI video generations from the Higgsfield community."
+      }
+    },
+    "soulCinema": {
+      "title": { "text": "Higgsfield Soul Cinema" },
+      "description": {
+        "text": "Explore Higgsfield Community gallery for stunning Higgsfield Soul Cinema creations."
+      }
+    },
+    "soul20": {
+      "title": { "text": "Higgsfield Soul 2.0" },
+      "description": {
+        "text": "A culture-native photo model built for fashion, aesthetics, and creative expression."
+      }
+    },
+    "exploreMore": {
+      "title": { "text": "Explore more AI features" }
+    },
+    "banners": {
+      "supercomputer": {
+        "title": { "text": "Supercomputer" },
+        "description": {
+          "text": "One superagent for your entire creative stack"
+        },
+        "cta": { "text": "Try Supercomputer" }
+      },
+      "oneCanvas": {
+        "kicker": { "text": "New feature" },
+        "title": { "text": "ONE CANVAS.\nEVERY WORKFLOW." },
+        "description": {
+          "text": "Moodboard, chain workflows, and share\nwith your team - all on one canvas"
+        },
+        "cta": { "text": "Try Canvas" }
+      },
+      "photodump": {
+        "kicker": { "text": "photodump" },
+        "title": { "text": "Different Scenes\nSame Star" },
+        "description": {
+          "text": "Build your character. One click does the rest"
+        },
+        "cta": { "text": "Try Photodump" }
+      }
     }
+  },
+  "footer": {
+    "heading": { "text": "AI-native creative suite" },
+    "address": { "text": "535 Mission St, 14th floor, San Francisco, CA, 94105" },
+    "copyright": { "text": "© {year} Higgsfield, Inc." },
+    "allRights": { "text": "All rights reserved." },
+    "helpCenter": { "text": "Help center" },
+    "cookieNotice": { "text": "Cookie Notice" },
+    "cookieSettings": { "text": "Cookie Settings" },
+    "terms": { "text": "Terms" },
+    "privacy": { "text": "Privacy" }
   },
   "library": {
     "empty": { "text": "Your creations will appear here." }

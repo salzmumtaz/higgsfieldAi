@@ -2,7 +2,7 @@ import { megaIcons } from "@/assets/icons/megaMenuIcons";
 import type { MegaColumn, MegaIconId, MegaItem } from "@/components/header/header.data";
 import { StatusBadge, statusBadgeWellClass } from "@/components/ui/StatusBadge";
 import { cn } from "@/lib/cn";
-import { t } from "@/lib/i18n";
+import { useT } from "@/lib/i18n";
 
 const adobeMarks: Record<"ps" | "pr" | "ae", string> = {
   ps: "Ps",
@@ -11,6 +11,7 @@ const adobeMarks: Record<"ps" | "pr" | "ae", string> = {
 };
 
 export function HeaderMegaMenu({ columns }: { columns: MegaColumn[] }) {
+  const t = useT();
   return (
     <div className="flex p-1">
       {columns.map((column) => (
@@ -28,6 +29,7 @@ export function HeaderMegaMenu({ columns }: { columns: MegaColumn[] }) {
 }
 
 function MegaRow({ item }: { item: MegaItem }) {
+  const t = useT();
   const badgeColor =
     item.badgeColor ?? (item.badge === "new" ? "lime" : item.badge === "top" ? "pink" : undefined);
 

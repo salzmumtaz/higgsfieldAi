@@ -28,42 +28,7 @@ import { t } from "@/lib/i18n";
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 
-type VisibilityHandler = (visible: boolean) => void;
-
-const visibilityHandlers = new Map<Element, VisibilityHandler>();
-let sharedVisibilityObserver: IntersectionObserver | null = null;
-
-function getSharedVisibilityObserver() {
-  if (!sharedVisibilityObserver) {
-    sharedVisibilityObserver = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          visibilityHandlers.get(entry.target)?.(entry.isIntersecting);
-        }
-      },
-      { rootMargin: "0px", threshold: 0.01 },
-    );
-  }
-
-  return sharedVisibilityObserver;
-}
-
-function observeVisibility(node: Element, handler: VisibilityHandler) {
-  visibilityHandlers.set(node, handler);
-  getSharedVisibilityObserver().observe(node);
-
-  return () => {
-    sharedVisibilityObserver?.unobserve(node);
-    visibilityHandlers.delete(node);
-
-    if (visibilityHandlers.size === 0) {
-      sharedVisibilityObserver?.disconnect();
-      sharedVisibilityObserver = null;
-    }
-  };
-}
-
-function prefersReducedMotion() {
+function reducedMotionEnabled() {
   return (
     typeof window !== "undefined" &&
     window.matchMedia(REDUCED_MOTION_QUERY).matches
@@ -80,10 +45,11 @@ export const GenjutsuPresetCard = memo(function GenjutsuPresetCard({
   const cardRef = useRef<HTMLElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const actionsRef = useRef<HTMLDivElement | null>(null);
-  const visibleRef = useRef(false);
+  const hoveredRef = useRef(false);
+  const focusWithinRef = useRef(false);
 
-  // This is the only React state in the card. It changes only when the user
-  // selects another source/variant, never because of scrolling.
+  // Only user media selection is React state.
+  // Scrolling, visibility and playback never update React state.
   const [selectedId, setSelectedId] = useState(() => showcaseMedia(preset).id);
 
   const media = mediaById(preset, selectedId);
@@ -92,41 +58,43 @@ export const GenjutsuPresetCard = memo(function GenjutsuPresetCard({
   const ModeIcon =
     preset.mode === "motion-control" ? MotionTransferIcon : ObjectsSwapIcon;
 
-  const syncPlayback = useCallback((visible: boolean) => {
-    visibleRef.current = visible;
-
-    const card = cardRef.current;
-    const video = videoRef.current;
-
-    if (visible && !prefersReducedMotion()) {
-      card?.setAttribute("data-explore-card-active", "");
-      if (video) {
-        video.muted = true;
-        void video.play().catch(() => {});
-      }
+  const setPlaybackAttribute = useCallback((active: boolean) => {
+    if (active) {
+      cardRef.current?.setAttribute("data-explore-card-active", "");
     } else {
-      card?.removeAttribute("data-explore-card-active");
-      video?.pause();
+      cardRef.current?.removeAttribute("data-explore-card-active");
     }
   }, []);
 
+  const playVideo = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (reducedMotionEnabled()) {
+      video.pause();
+      setPlaybackAttribute(false);
+      return;
+    }
+
+    video.muted = true;
+    setPlaybackAttribute(true);
+    void video.play().catch(() => {
+      setPlaybackAttribute(false);
+    });
+  }, [setPlaybackAttribute]);
+
+  const pauseVideo = useCallback(() => {
+    videoRef.current?.pause();
+    setPlaybackAttribute(false);
+  }, [setPlaybackAttribute]);
+
+  // When a variant changes while the card is already hovered/focused,
+  // start the newly mounted video. This only runs after a user selection.
   useEffect(() => {
-    const card = cardRef.current;
-    if (!card) return;
-
-    const cleanup = observeVisibility(card, syncPlayback);
-
-    return () => {
-      cleanup();
-      card.querySelector("video")?.pause();
-    };
-  }, [syncPlayback]);
-
-  // Selecting another media item replaces the video element. Apply the
-  // current visibility state to the new element without creating scroll state.
-  useEffect(() => {
-    syncPlayback(visibleRef.current);
-  }, [media.id, syncPlayback]);
+    if (hoveredRef.current || focusWithinRef.current) {
+      playVideo();
+    }
+  }, [media.id, playVideo]);
 
   const onTimeUpdate = useCallback(
     (event: SyntheticEvent<HTMLVideoElement>) => {
@@ -155,6 +123,25 @@ export const GenjutsuPresetCard = memo(function GenjutsuPresetCard({
           : "mb-4 w-full shrink-0 break-inside-avoid",
         GENJUTSU_ASPECT_CLASS[preset.aspect],
       )}
+      onPointerEnter={() => {
+        hoveredRef.current = true;
+        playVideo();
+      }}
+      onPointerLeave={() => {
+        hoveredRef.current = false;
+        if (!focusWithinRef.current) pauseVideo();
+      }}
+      onFocusCapture={() => {
+        focusWithinRef.current = true;
+        playVideo();
+      }}
+      onBlurCapture={(event) => {
+        const nextTarget = event.relatedTarget as Node | null;
+        if (nextTarget && event.currentTarget.contains(nextTarget)) return;
+
+        focusWithinRef.current = false;
+        if (!hoveredRef.current) pauseVideo();
+      }}
     >
       <button
         type="button"
@@ -171,6 +158,8 @@ export const GenjutsuPresetCard = memo(function GenjutsuPresetCard({
         className="pointer-events-none absolute inset-0 z-1 size-full object-cover"
       />
 
+      {/* Always mounted, but preload="none" prevents eager media loading.
+          Playback is controlled imperatively on hover/focus, with no React state. */}
       <div className="pointer-events-none absolute inset-0 z-2">
         <video
           key={media.id}
@@ -190,6 +179,7 @@ export const GenjutsuPresetCard = memo(function GenjutsuPresetCard({
         </video>
       </div>
 
+      {/* Controls stay mounted permanently. CSS handles visibility. */}
       <div
         data-explore-mode-chip=""
         className={cn(

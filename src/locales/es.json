@@ -1,0 +1,436 @@
+{
+  "nav": {
+    "explore": {
+      "text": "Explorar"
+    },
+    "image": {
+      "text": "Imagen"
+    },
+    "video": {
+      "text": "Video"
+    },
+    "audio": {
+      "text": "Audio"
+    },
+    "mcp": {
+      "text": "MCP"
+    },
+    "api": {
+      "text": "API"
+    },
+    "chatgptPlugin": {
+      "text": "Plugin de ChatGPT"
+    },
+    "genjutsu": {
+      "text": "Genjutsu"
+    },
+    "effects": {
+      "text": "Efectos"
+    },
+    "cinemaStudio": {
+      "text": "Cinema Studio"
+    },
+    "marketingStudio": {
+      "text": "Marketing Studio"
+    },
+    "supercomputer": {
+      "text": "Supercomputer"
+    },
+    "threeDJutsu": {
+      "text": "3D Jutsu"
+    },
+    "edit": {
+      "text": "Editar"
+    },
+    "academy": {
+      "text": "Academy"
+    },
+    "community": {
+      "text": "Comunidad"
+    },
+    "contests": {
+      "text": "Concursos"
+    },
+    "plugins": {
+      "text": "Complementos"
+    },
+    "canvas": {
+      "text": "Canvas"
+    },
+    "originals": {
+      "text": "Originals"
+    },
+    "library": {
+      "text": "Biblioteca"
+    },
+    "profile": {
+      "text": "Perfil"
+    },
+    "pricing": {
+      "text": "Precios"
+    },
+    "enterprise": {
+      "text": "Enterprise"
+    },
+    "login": {
+      "text": "Iniciar sesión"
+    },
+    "signUp": {
+      "text": "Regístrate"
+    }
+  },
+  "header": {
+    "primary": {
+      "text": "Principal"
+    },
+    "logo": {
+      "text": "Higgsfield"
+    },
+    "search": {
+      "text": "Buscar"
+    },
+    "assets": {
+      "text": "Recursos"
+    },
+    "notifications": {
+      "text": "Notificaciones"
+    },
+    "account": {
+      "text": "Cuenta"
+    },
+    "openMenu": {
+      "text": "Abrir menú"
+    },
+    "language": {
+      "text": "Cambiar idioma"
+    },
+    "features": {
+      "text": "Funciones"
+    },
+    "models": {
+      "text": "Modelos"
+    },
+    "plugins": {
+      "text": "Complementos"
+    },
+    "pricingOff": {
+      "text": "30% DE DESCUENTO"
+    },
+    "promo": {
+      "text": "Consigue un descuento adicional en los planes premium al registrarte"
+    },
+    "promoCta": {
+      "text": "Consigue tu descuento"
+    },
+    "dismissPromo": {
+      "text": "Descartar"
+    }
+  },
+  "actions": {
+    "generate": {
+      "text": "Generar"
+    },
+    "recreate": {
+      "text": "Recrear"
+    },
+    "like": {
+      "text": "Me gusta"
+    },
+    "tryForFree": {
+      "text": "Pruébalo gratis"
+    },
+    "startGenerating": {
+      "text": "Empieza a generar"
+    },
+    "viewAllPresets": {
+      "text": "Ver todos los presets"
+    },
+    "viewAllOf": {
+      "text": "Ver todo de {name}"
+    },
+    "learnMore": {
+      "text": "Más información"
+    },
+    "exploreCommunity": {
+      "text": "Explora la comunidad"
+    },
+    "openPreset": {
+      "text": "Abrir preset"
+    },
+    "recreateThisExample": {
+      "text": "Recrear este ejemplo"
+    },
+    "upgrade": {
+      "text": "Mejorar plan"
+    }
+  },
+  "video": {
+    "create": {
+      "text": "Crear video"
+    },
+    "edit": {
+      "text": "Editar video"
+    },
+    "motion": {
+      "text": "Motion Control"
+    }
+  },
+  "composer": {
+    "describeScene": {
+      "text": "Describe la escena"
+    },
+    "describeSceneYouImagine": {
+      "text": "Describe la escena que imaginas…"
+    }
+  },
+  "auth": {
+    "welcome": {
+      "text": "Te damos la bienvenida a Higgsfield"
+    },
+    "signUpFree": {
+      "text": "Regístrate y genera gratis"
+    },
+    "continueGoogle": {
+      "text": "Continuar con Google"
+    },
+    "continueEmail": {
+      "text": "Continuar con correo electrónico"
+    },
+    "signOut": {
+      "text": "Cerrar sesión"
+    }
+  },
+  "home": {
+    "communityPost": {
+      "text": "Publicación de la comunidad hecha por @{username}"
+    },
+    "profilePicture": {
+      "text": "Foto de perfil de {username}"
+    },
+    "openProduct": {
+      "text": "Abrir {title}"
+    },
+    "nextFeatured": {
+      "text": "Mostrar la siguiente diapositiva"
+    },
+    "prevFeatured": {
+      "text": "Mostrar la diapositiva anterior"
+    },
+    "videoUnsupported": {
+      "text": "Tu navegador no admite el video."
+    },
+    "astra": {
+      "heading": {
+        "text": "Higgsfield MCP con GPT-6 Astra"
+      },
+      "kicker": {
+        "text": "Higgsfield MCP con"
+      },
+      "description": {
+        "text": "Crea juegos, gráficos en movimiento y experiencias 3D interactivas con Higgsfield MCP"
+      },
+      "installPlugin": {
+        "text": "Instala el plugin de Higgsfield"
+      },
+      "exploreUseCases": {
+        "text": "Explora casos de uso"
+      }
+    },
+    "visualEffects": {
+      "title": {
+        "text": "Efectos visuales"
+      },
+      "description": {
+        "text": "Efectos visuales de gran presupuesto, desde explosiones hasta transformaciones surrealistas."
+      }
+    },
+    "genjutsu": {
+      "title": {
+        "text": "Higgsfield Genjutsu"
+      },
+      "description": {
+        "text": "Reality Manipulation — transfiere el movimiento a nuevas escenas o cambia detalles mientras todo lo demás se mantiene tal como se filmó."
+      },
+      "descriptionMobile": {
+        "text": "Toma el movimiento y hazle recast con tus personajes, ubicaciones y productos, o intercambia elementos específicos y mantén el resto intacto."
+      },
+      "objectsSwap": {
+        "text": "Intercambio de objetos"
+      },
+      "motionTransfer": {
+        "text": "Transferencia de movimiento"
+      },
+      "newModel": {
+        "text": "Nuevo modelo"
+      },
+      "showSourceVideo": {
+        "text": "Mostrar video de origen"
+      },
+      "showVariant": {
+        "text": "Mostrar variante {index}"
+      },
+      "showcase": {
+        "text": "Galería"
+      },
+      "reference": {
+        "text": "Referencia"
+      },
+      "output": {
+        "text": "Resultado {index}"
+      },
+      "example": {
+        "text": "Ejemplo de Genjutsu"
+      }
+    },
+    "seedance25": {
+      "title": {
+        "text": "Seedance 2.5"
+      },
+      "description": {
+        "text": "El modelo de video con IA más avanzado"
+      }
+    },
+    "projects": {
+      "title": {
+        "text": "Explora el interior de cada proyecto"
+      },
+      "description": {
+        "text": "Mira todos los prompts, los recursos y cómo se creó cada proyecto"
+      }
+    },
+    "gptImage2": {
+      "title": {
+        "text": "GPT Image 2"
+      },
+      "description": {
+        "text": "Imágenes en 4K con renderizado de texto casi perfecto."
+      }
+    },
+    "marketingStudio": {
+      "title": {
+        "text": "Marketing Studio"
+      },
+      "description": {
+        "text": "Descubre lo que hacen creadores y marcas con Marketing Studio."
+      }
+    },
+    "seedance20": {
+      "title": {
+        "text": "Seedance 2.0"
+      },
+      "description": {
+        "text": "Explora videos generados por IA premium de la comunidad de Higgsfield."
+      }
+    },
+    "soulCinema": {
+      "title": {
+        "text": "Higgsfield Soul Cinema"
+      },
+      "description": {
+        "text": "Explora la galería de la comunidad de Higgsfield para ver impresionantes creaciones de Higgsfield Soul Cinema."
+      }
+    },
+    "soul20": {
+      "title": {
+        "text": "Higgsfield Soul 2.0"
+      },
+      "description": {
+        "text": "Un modelo fotográfico con cultura nativa creado para la moda, la estética y la expresión creativa."
+      }
+    },
+    "exploreMore": {
+      "title": {
+        "text": "Explora más funciones de IA"
+      }
+    },
+    "banners": {
+      "supercomputer": {
+        "title": {
+          "text": "Supercomputer"
+        },
+        "description": {
+          "text": "Un superagente para todas tus herramientas creativas"
+        },
+        "cta": {
+          "text": "Prueba Supercomputer"
+        }
+      },
+      "oneCanvas": {
+        "kicker": {
+          "text": "Nueva función"
+        },
+        "title": {
+          "text": "UN SOLO CANVAS.\nTODOS LOS FLUJOS DE TRABAJO."
+        },
+        "description": {
+          "text": "Moodboard, flujos de trabajo encadenados y comparte\ncon tu equipo: todo en un solo canvas"
+        },
+        "cta": {
+          "text": "Prueba Canvas"
+        }
+      },
+      "photodump": {
+        "kicker": {
+          "text": "recopilación de fotos"
+        },
+        "title": {
+          "text": "Diferentes escenas\nMisma estrella"
+        },
+        "description": {
+          "text": "Crea tu personaje. Un clic hace el resto"
+        },
+        "cta": {
+          "text": "Prueba Photodump"
+        }
+      }
+    }
+  },
+  "footer": {
+    "heading": {
+      "text": "Suite creativa nativa de IA"
+    },
+    "address": {
+      "text": "535 Mission St, piso 14, San Francisco, CA, 94105"
+    },
+    "copyright": {
+      "text": "© {year} Higgsfield, Inc."
+    },
+    "allRights": {
+      "text": "Todos los derechos reservados."
+    },
+    "helpCenter": {
+      "text": "Centro de ayuda"
+    },
+    "cookieNotice": {
+      "text": "Aviso de cookies"
+    },
+    "cookieSettings": {
+      "text": "Configuración de cookies"
+    },
+    "terms": {
+      "text": "Términos"
+    },
+    "privacy": {
+      "text": "Privacidad"
+    }
+  },
+  "library": {
+    "empty": {
+      "text": "Tus creaciones aparecerán aquí."
+    }
+  },
+  "badges": {
+    "new": {
+      "text": "Nuevo"
+    },
+    "free": {
+      "text": "Gratis"
+    },
+    "top": {
+      "text": "Arriba"
+    },
+    "public": {
+      "text": "Público"
+    }
+  }
+}

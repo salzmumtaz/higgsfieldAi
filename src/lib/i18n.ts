@@ -1,5 +1,6 @@
 import { useSyncExternalStore } from "react";
 import en from "../locales/en.json";
+import es from "../locales/es.json";
 
 type Messages = typeof en;
 type MessageLeaf = { text: string };
@@ -14,7 +15,7 @@ type MessageKeyOf<T> = {
 
 export type MessageKey = MessageKeyOf<Messages>;
 
-export type LocaleId = "en" | "es" | "ja" | "ko" | "de";
+export type LocaleId = "en" | "es";
 
 export type Translate = (
   key: MessageKey,
@@ -29,9 +30,6 @@ export const locales: {
 }[] = [
   { id: "en", label: "English", flagSrc: "/country-flags/English.png", flagAlt: "English flag" },
   { id: "es", label: "Español", flagSrc: "/country-flags/Spanish.png", flagAlt: "Español flag" },
-  { id: "ja", label: "日本語", flagSrc: "/country-flags/Japanese.png", flagAlt: "日本語 flag" },
-  { id: "ko", label: "한국어", flagSrc: "/country-flags/Korean.png", flagAlt: "한국어 flag" },
-  { id: "de", label: "Deutsch", flagSrc: "/country-flags/German.png", flagAlt: "Deutsch flag" },
 ];
 
 let locale: LocaleId = "en";
@@ -62,7 +60,10 @@ export function useLocale() {
   );
 }
 
-const messages = en as Messages;
+const catalogs: Record<LocaleId, Messages> = {
+  en,
+  es: es as Messages,
+};
 
 function readLeaf(node: unknown): string | undefined {
   if (!node || typeof node !== "object") return undefined;
@@ -72,7 +73,7 @@ function readLeaf(node: unknown): string | undefined {
   return undefined;
 }
 
-function lookup(key: MessageKey): string | undefined {
+function lookupIn(messages: Messages, key: MessageKey): string | undefined {
   const parts = key.split(".");
   let node: unknown = messages;
 
@@ -82,6 +83,11 @@ function lookup(key: MessageKey): string | undefined {
   }
 
   return readLeaf(node);
+}
+
+function lookup(key: MessageKey): string | undefined {
+  const locale = getLocale();
+  return lookupIn(catalogs[locale], key) ?? lookupIn(catalogs.en, key);
 }
 
 export function t(

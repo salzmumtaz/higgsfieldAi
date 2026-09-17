@@ -71,8 +71,42 @@
     "welcome": { "text": "Welcome to Higgsfield" },
     "signUpFree": { "text": "Sign up and generate for free" },
     "continueGoogle": { "text": "Continue with Google" },
+    "continueApple": { "text": "Continue with Apple" },
+    "continueMicrosoft": { "text": "Continue with Microsoft" },
     "continueEmail": { "text": "Continue with Email" },
-    "signOut": { "text": "Sign out" }
+    "businessCredits": { "text": "Sign in with business email & Get 50 credits" },
+    "or": { "text": "OR" },
+    "ssoAvailable": { "text": "SSO available on {plans} plans" },
+    "ssoPlans": { "text": "Scale and Enterprise" },
+    "close": { "text": "Close" },
+    "back": { "text": "Back" },
+    "quality2k": { "text": "2K Quality" },
+    "promptEnhancer": { "text": "Prompt Enhancer" },
+    "signOut": { "text": "Sign out" },
+    "showcase": {
+      "seedance": {
+        "title": { "text": "Seedance 2.0 4K" },
+        "tab": { "text": "Seedance 2.0 4K" },
+        "description": { "text": "Native 4K video generation" }
+      },
+      "nano": {
+        "title": { "text": "Nano Banana Pro 4K" },
+        "tab": { "text": "Nano Banana Pro" },
+        "description": { "text": "Next generation image generation" }
+      },
+      "soul": {
+        "title": { "text": "Higgsfield Soul" },
+        "tab": { "text": "Higgsfield Soul" },
+        "description": {
+          "text": "Create consistent characters across images and videos for storytelling"
+        }
+      },
+      "cinema": {
+        "title": { "text": "Cinema Studio" },
+        "tab": { "text": "Cinematic App" },
+        "description": { "text": "AI video generations with Cinema Studio" }
+      }
+    }
   },
   "home": {
     "communityPost": { "text": "Community post made by @{username}" },

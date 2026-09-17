@@ -193,11 +193,65 @@
     "continueGoogle": {
       "text": "Continuar con Google"
     },
+    "continueApple": {
+      "text": "Continuar con Apple"
+    },
+    "continueMicrosoft": {
+      "text": "Continuar con Microsoft"
+    },
     "continueEmail": {
       "text": "Continuar con correo electrónico"
     },
+    "businessCredits": {
+      "text": "Inicia sesión con correo empresarial y consigue 50 créditos"
+    },
+    "or": {
+      "text": "O"
+    },
+    "ssoAvailable": {
+      "text": "SSO disponible en los planes {plans}"
+    },
+    "ssoPlans": {
+      "text": "Scale y Enterprise"
+    },
+    "close": {
+      "text": "Cerrar"
+    },
+    "back": {
+      "text": "Volver"
+    },
+    "quality2k": {
+      "text": "Calidad 2K"
+    },
+    "promptEnhancer": {
+      "text": "Prompt Enhancer"
+    },
     "signOut": {
       "text": "Cerrar sesión"
+    },
+    "showcase": {
+      "seedance": {
+        "title": { "text": "Seedance 2.0 4K" },
+        "tab": { "text": "Seedance 2.0 4K" },
+        "description": { "text": "Generación de video en 4K nativo" }
+      },
+      "nano": {
+        "title": { "text": "Nano Banana Pro 4K" },
+        "tab": { "text": "Nano Banana Pro" },
+        "description": { "text": "Generación de imágenes de nueva generación" }
+      },
+      "soul": {
+        "title": { "text": "Higgsfield Soul" },
+        "tab": { "text": "Higgsfield Soul" },
+        "description": {
+          "text": "Crea personajes coherentes en imágenes y videos para contar historias"
+        }
+      },
+      "cinema": {
+        "title": { "text": "Cinema Studio" },
+        "tab": { "text": "Cinematic App" },
+        "description": { "text": "Generaciones de video con IA en Cinema Studio" }
+      }
     }
   },
   "home": {

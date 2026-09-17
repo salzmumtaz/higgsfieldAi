@@ -5,6 +5,7 @@
   color-scheme: dark;
 
   --bg-page: #0f1113;
+  --bg-page-primary: #131517;
   --bg-surface-primary: #1c1e20;
   --bg-surface-secondary: #23262a;
   --bg-surface-tertiary: #2a2d32;
@@ -81,6 +82,7 @@
 
 @theme inline {
   --color-page: var(--bg-page);
+  --color-page-primary: var(--bg-page-primary);
   --color-surface-primary: var(--bg-surface-primary);
   --color-surface-secondary: var(--bg-surface-secondary);
   --color-surface-tertiary: var(--bg-surface-tertiary);
@@ -95,6 +97,7 @@
   --color-brand-secondary: var(--brand-secondary);
   --color-brand-secondary-alpha: var(--brand-secondary-alpha);
   --color-brand-soft: var(--bg-brand-soft);
+  --color-brand-soft-10: var(--bg-brand-soft-10);
   --color-danger: var(--danger);
   --color-success: var(--success);
   --color-warning: var(--warning);
@@ -103,6 +106,7 @@
   --color-border-subtle: var(--border-subtle);
   --color-border-default: var(--border-default);
   --color-border-strong: var(--border-strong);
+  --color-border-card: var(--border-card);
   --color-ring: var(--brand);
 
   --font-sans: var(--font-sans-family);
